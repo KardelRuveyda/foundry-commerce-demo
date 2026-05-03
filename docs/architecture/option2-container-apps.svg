@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 820" font-family="Segoe UI, Arial, sans-serif">
+  <!-- ============ DEFS ============ -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5f9ff"/>
+      <stop offset="100%" stop-color="#eaf3ff"/>
+    </linearGradient>
+    <linearGradient id="azureGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0078d4"/>
+      <stop offset="100%" stop-color="#005a9e"/>
+    </linearGradient>
+    <linearGradient id="acaGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f4ff"/>
+      <stop offset="100%" stop-color="#cfe6ff"/>
+    </linearGradient>
+    <linearGradient id="foundryGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe9d6"/>
+      <stop offset="100%" stop-color="#ffd0a3"/>
+    </linearGradient>
+    <linearGradient id="agentGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0f6ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.18"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0078d4"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#107c10"/>
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d83b01"/>
+    </marker>
+  </defs>
+
+  <!-- ============ BACKGROUND ============ -->
+  <rect width="1280" height="820" fill="url(#bgGrad)"/>
+
+  <!-- ============ TITLE ============ -->
+  <text x="640" y="40" text-anchor="middle" font-size="22" font-weight="700" fill="#1f2937">
+    FoundryCommerceDemo — Option 2: Hosted on Azure Container Apps
+  </text>
+  <text x="640" y="62" text-anchor="middle" font-size="13" fill="#6b7280">
+    Multi-agent .NET 10 API on Container Apps · Microsoft Foundry as the LLM gateway · Managed Identity for auth
+  </text>
+
+  <!-- ============ CLIENT ============ -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="340" width="170" height="120" rx="12" fill="#ffffff" stroke="#0078d4" stroke-width="2"/>
+    <text x="125" y="370" text-anchor="middle" font-size="32">👤</text>
+    <text x="125" y="402" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">Client</text>
+    <text x="125" y="422" text-anchor="middle" font-size="11" fill="#4b5563">Web / Mobile / SDK</text>
+    <text x="125" y="440" text-anchor="middle" font-size="10" fill="#6b7280">POST /api/orders/...</text>
+  </g>
+
+  <!-- ============ AZURE BOUNDARY ============ -->
+  <g>
+    <rect x="250" y="90" width="990" height="700" rx="14" fill="none" stroke="url(#azureGrad)" stroke-width="2.5" stroke-dasharray="6,4"/>
+    <rect x="270" y="78" width="170" height="26" rx="6" fill="url(#azureGrad)"/>
+    <text x="355" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">☁  Microsoft Azure</text>
+  </g>
+
+  <!-- ============ FRONT DOOR / APIM (optional layer) ============ -->
+  <g filter="url(#shadow)">
+    <rect x="280" y="340" width="170" height="120" rx="12" fill="#ffffff" stroke="#5c2d91" stroke-width="2"/>
+    <text x="365" y="368" text-anchor="middle" font-size="22">🌐</text>
+    <text x="365" y="395" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Azure Front Door</text>
+    <text x="365" y="412" text-anchor="middle" font-size="11" fill="#4b5563">+ API Management</text>
+    <text x="365" y="430" text-anchor="middle" font-size="10" fill="#6b7280">TLS · WAF · Rate limit</text>
+    <text x="365" y="446" text-anchor="middle" font-size="10" fill="#6b7280">(optional)</text>
+  </g>
+
+  <!-- ============ CONTAINER APPS ENVIRONMENT ============ -->
+  <g>
+    <rect x="490" y="180" width="500" height="450" rx="14" fill="url(#acaGrad)" stroke="#0078d4" stroke-width="2"/>
+    <rect x="510" y="168" width="270" height="26" rx="6" fill="#0078d4"/>
+    <text x="645" y="186" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">📦 Azure Container Apps Environment</text>
+
+    <!-- Container App: FoundryCommerceDemo -->
+    <g filter="url(#shadow)">
+      <rect x="510" y="210" width="460" height="400" rx="10" fill="#ffffff" stroke="#0078d4" stroke-width="1.5"/>
+      <rect x="510" y="210" width="460" height="34" rx="10" fill="#0078d4"/>
+      <rect x="510" y="232" width="460" height="12" fill="#0078d4"/>
+      <text x="525" y="232" font-size="13" font-weight="700" fill="#ffffff">🟢 Container App: foundry-commerce-api</text>
+      <text x="955" y="232" text-anchor="end" font-size="10" fill="#cfe6ff">scale 0 → N · HTTPS</text>
+
+      <!-- ASP.NET Core Header -->
+      <rect x="525" y="260" width="430" height="28" rx="6" fill="#f3f4f6" stroke="#d1d5db"/>
+      <text x="540" y="279" font-size="12" font-weight="700" fill="#1f2937">ASP.NET Core 10 · Microsoft.Agents.AI v1.0</text>
+      <text x="940" y="279" text-anchor="end" font-size="10" fill="#6b7280">.NET 10</text>
+
+      <!-- Orchestrator -->
+      <g filter="url(#shadow)">
+        <rect x="540" y="300" width="400" height="48" rx="8" fill="url(#agentGrad)" stroke="#0078d4"/>
+        <text x="555" y="322" font-size="13" font-weight="700" fill="#1f2937">🧭 Pipeline Orchestrator</text>
+        <text x="555" y="340" font-size="10" fill="#6b7280">Program.cs · routes orders through the 4 agents</text>
+      </g>
+
+      <!-- Agents grid -->
+      <g filter="url(#shadow)">
+        <rect x="540" y="360" width="195" height="80" rx="8" fill="url(#agentGrad)" stroke="#107c10"/>
+        <text x="552" y="382" font-size="12" font-weight="700" fill="#1f2937">🛡 FraudDetectionAgent</text>
+        <text x="552" y="400" font-size="10" fill="#4b5563">FraudTools.cs</text>
+        <text x="552" y="414" font-size="9" fill="#6b7280">• AnalyzeGeoConsistency</text>
+        <text x="552" y="426" font-size="9" fill="#6b7280">• CheckOrderVelocity</text>
+      </g>
+
+      <g filter="url(#shadow)">
+        <rect x="745" y="360" width="195" height="80" rx="8" fill="url(#agentGrad)" stroke="#107c10"/>
+        <text x="757" y="382" font-size="12" font-weight="700" fill="#1f2937">📦 InventoryAgent</text>
+        <text x="757" y="400" font-size="10" fill="#4b5563">InventoryTools.cs</text>
+        <text x="757" y="414" font-size="9" fill="#6b7280">• CheckStockAvailability</text>
+        <text x="757" y="426" font-size="9" fill="#6b7280">• ReserveStock</text>
+      </g>
+
+      <g filter="url(#shadow)">
+        <rect x="540" y="450" width="195" height="80" rx="8" fill="url(#agentGrad)" stroke="#107c10"/>
+        <text x="552" y="472" font-size="12" font-weight="700" fill="#1f2937">🚚 FulfillmentAgent</text>
+        <text x="552" y="490" font-size="10" fill="#4b5563">uses InventoryAgent</text>
+        <text x="552" y="504" font-size="9" fill="#6b7280">• OptimizeFulfillment</text>
+        <text x="552" y="516" font-size="9" fill="#6b7280">• Split shipments</text>
+      </g>
+
+      <g filter="url(#shadow)">
+        <rect x="745" y="450" width="195" height="80" rx="8" fill="url(#agentGrad)" stroke="#107c10"/>
+        <text x="757" y="472" font-size="12" font-weight="700" fill="#1f2937">💬 CustomerAgent</text>
+        <text x="757" y="490" font-size="10" fill="#4b5563">CustomerTools.cs</text>
+        <text x="757" y="504" font-size="9" fill="#6b7280">• Drafts emails</text>
+        <text x="757" y="516" font-size="9" fill="#6b7280">• Hides sensitive data</text>
+      </g>
+
+      <!-- In-memory state -->
+      <rect x="540" y="545" width="400" height="50" rx="8" fill="#fff7ed" stroke="#d97706"/>
+      <text x="555" y="565" font-size="11" font-weight="700" fill="#92400e">💾 In-memory state</text>
+      <text x="555" y="582" font-size="10" fill="#78350f">OrderDatabase · WarehouseDatabase  (move to Cosmos DB / SQL for production)</text>
+    </g>
+  </g>
+
+  <!-- ============ MICROSOFT FOUNDRY ============ -->
+  <g filter="url(#shadow)">
+    <rect x="1030" y="180" width="210" height="180" rx="12" fill="url(#foundryGrad)" stroke="#d83b01" stroke-width="2"/>
+    <text x="1135" y="208" text-anchor="middle" font-size="13" font-weight="700" fill="#7c2d12">🏭 Microsoft Foundry</text>
+    <text x="1135" y="226" text-anchor="middle" font-size="10" fill="#7c2d12">AI Project: admin-5418</text>
+
+    <rect x="1045" y="240" width="180" height="50" rx="6" fill="#ffffff" stroke="#d83b01"/>
+    <text x="1055" y="260" font-size="11" font-weight="700" fill="#1f2937">🧠 gpt-4o-mini</text>
+    <text x="1055" y="276" font-size="9" fill="#6b7280">Model deployment</text>
+
+    <rect x="1045" y="298" width="180" height="48" rx="6" fill="#ffffff" stroke="#d83b01"/>
+    <text x="1055" y="318" font-size="11" font-weight="700" fill="#1f2937">🔌 AIProjectClient</text>
+    <text x="1055" y="334" font-size="9" fill="#6b7280">Azure.AI.Projects 2.0.1</text>
+  </g>
+
+  <!-- ============ MANAGED IDENTITY ============ -->
+  <g filter="url(#shadow)">
+    <rect x="1030" y="380" width="210" height="100" rx="12" fill="#ffffff" stroke="#107c10" stroke-width="2"/>
+    <text x="1135" y="408" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">🔐 Managed Identity</text>
+    <text x="1135" y="428" text-anchor="middle" font-size="10" fill="#4b5563">User-assigned</text>
+    <text x="1135" y="445" text-anchor="middle" font-size="10" fill="#6b7280">No API keys ✨</text>
+    <text x="1135" y="462" text-anchor="middle" font-size="9" fill="#6b7280">Role: Azure AI User</text>
+  </g>
+
+  <!-- ============ CONTAINER REGISTRY ============ -->
+  <g filter="url(#shadow)">
+    <rect x="280" y="180" width="170" height="110" rx="12" fill="#ffffff" stroke="#0078d4" stroke-width="2"/>
+    <text x="365" y="208" text-anchor="middle" font-size="22">🐳</text>
+    <text x="365" y="234" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">Azure Container</text>
+    <text x="365" y="250" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">Registry (ACR)</text>
+    <text x="365" y="270" text-anchor="middle" font-size="10" fill="#6b7280">foundrydemo.azurecr.io</text>
+  </g>
+
+  <!-- ============ KEY VAULT ============ -->
+  <g filter="url(#shadow)">
+    <rect x="280" y="500" width="170" height="100" rx="12" fill="#ffffff" stroke="#5c2d91" stroke-width="2"/>
+    <text x="365" y="528" text-anchor="middle" font-size="22">🔑</text>
+    <text x="365" y="554" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Azure Key Vault</text>
+    <text x="365" y="572" text-anchor="middle" font-size="10" fill="#6b7280">Secrets / certs</text>
+    <text x="365" y="588" text-anchor="middle" font-size="9" fill="#9ca3af">(optional)</text>
+  </g>
+
+  <!-- ============ APP INSIGHTS / LOG ANALYTICS ============ -->
+  <g filter="url(#shadow)">
+    <rect x="280" y="640" width="170" height="120" rx="12" fill="#ffffff" stroke="#0078d4" stroke-width="2"/>
+    <text x="365" y="668" text-anchor="middle" font-size="22">📊</text>
+    <text x="365" y="694" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">App Insights</text>
+    <text x="365" y="710" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">+ Log Analytics</text>
+    <text x="365" y="730" text-anchor="middle" font-size="10" fill="#6b7280">OpenTelemetry traces</text>
+    <text x="365" y="745" text-anchor="middle" font-size="9" fill="#9ca3af">tool calls · token usage</text>
+  </g>
+
+  <!-- ============ COSMOS DB (state, optional) ============ -->
+  <g filter="url(#shadow)">
+    <rect x="490" y="660" width="220" height="100" rx="12" fill="#ffffff" stroke="#0078d4" stroke-width="2"/>
+    <text x="600" y="688" text-anchor="middle" font-size="22">🗄</text>
+    <text x="600" y="714" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Azure Cosmos DB</text>
+    <text x="600" y="732" text-anchor="middle" font-size="10" fill="#6b7280">Orders · Warehouses · Audit</text>
+    <text x="600" y="748" text-anchor="middle" font-size="9" fill="#9ca3af">replaces in-memory data</text>
+  </g>
+
+  <!-- ============ SERVICE BUS (optional) ============ -->
+  <g filter="url(#shadow)">
+    <rect x="730" y="660" width="220" height="100" rx="12" fill="#ffffff" stroke="#0078d4" stroke-width="2"/>
+    <text x="840" y="688" text-anchor="middle" font-size="22">📨</text>
+    <text x="840" y="714" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Azure Service Bus</text>
+    <text x="840" y="732" text-anchor="middle" font-size="10" fill="#6b7280">Order intake queue</text>
+    <text x="840" y="748" text-anchor="middle" font-size="9" fill="#9ca3af">async / retry / DLQ</text>
+  </g>
+
+  <!-- ============ DEVELOPER / GITHUB ============ -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="640" width="170" height="120" rx="12" fill="#ffffff" stroke="#1f2937" stroke-width="2"/>
+    <text x="125" y="668" text-anchor="middle" font-size="22">🧑‍💻</text>
+    <text x="125" y="694" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Developer</text>
+    <text x="125" y="712" text-anchor="middle" font-size="10" fill="#4b5563">GitHub Actions</text>
+    <text x="125" y="728" text-anchor="middle" font-size="10" fill="#4b5563">azd up</text>
+    <text x="125" y="744" text-anchor="middle" font-size="9" fill="#9ca3af">build · push · deploy</text>
+  </g>
+
+  <!-- ============ ARROWS ============ -->
+
+  <!-- Client -> Front Door -->
+  <line x1="210" y1="400" x2="278" y2="400" stroke="#0078d4" stroke-width="2.2" marker-end="url(#arrow)"/>
+  <text x="240" y="392" text-anchor="middle" font-size="10" fill="#0078d4" font-weight="600">HTTPS</text>
+
+  <!-- Front Door -> Container App -->
+  <line x1="450" y1="400" x2="510" y2="400" stroke="#0078d4" stroke-width="2.2" marker-end="url(#arrow)"/>
+
+  <!-- Container App -> Foundry -->
+  <line x1="970" y1="290" x2="1030" y2="270" stroke="#d83b01" stroke-width="2.2" marker-end="url(#arrowOrange)"/>
+  <text x="1000" y="262" text-anchor="middle" font-size="10" fill="#d83b01" font-weight="600">LLM calls</text>
+
+  <!-- Container App -> Managed Identity -->
+  <line x1="970" y1="440" x2="1030" y2="430" stroke="#107c10" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+  <text x="1000" y="422" text-anchor="middle" font-size="9" fill="#107c10">auth</text>
+
+  <!-- Managed Identity -> Foundry -->
+  <line x1="1135" y1="380" x2="1135" y2="362" stroke="#107c10" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+
+  <!-- ACR -> Container App -->
+  <line x1="365" y1="290" x2="510" y2="320" stroke="#0078d4" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+  <text x="430" y="297" text-anchor="middle" font-size="10" fill="#0078d4">pull image</text>
+
+  <!-- Key Vault -> Container App -->
+  <line x1="450" y1="540" x2="510" y2="500" stroke="#5c2d91" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+
+  <!-- Container App -> App Insights -->
+  <line x1="490" y1="600" x2="450" y2="680" stroke="#0078d4" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+  <text x="455" y="640" text-anchor="middle" font-size="10" fill="#0078d4">telemetry</text>
+
+  <!-- Container App -> Cosmos DB -->
+  <line x1="700" y1="610" x2="630" y2="660" stroke="#0078d4" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+
+  <!-- Container App -> Service Bus -->
+  <line x1="800" y1="610" x2="820" y2="660" stroke="#0078d4" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+
+  <!-- Developer -> ACR -->
+  <line x1="210" y1="680" x2="280" y2="280" stroke="#1f2937" stroke-width="1.6" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
+  <text x="225" y="500" font-size="10" fill="#1f2937" transform="rotate(-65 225 500)">push image</text>
+
+  <!-- ============ LEGEND ============ -->
+  <g transform="translate(40, 90)">
+    <rect width="170" height="220" rx="10" fill="#ffffff" stroke="#d1d5db" stroke-width="1"/>
+    <text x="85" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">Legend</text>
+
+    <line x1="14" y1="44" x2="44" y2="44" stroke="#0078d4" stroke-width="2.2" marker-end="url(#arrow)"/>
+    <text x="52" y="48" font-size="10" fill="#1f2937">User request flow</text>
+
+    <line x1="14" y1="68" x2="44" y2="68" stroke="#d83b01" stroke-width="2.2" marker-end="url(#arrowOrange)"/>
+    <text x="52" y="72" font-size="10" fill="#1f2937">LLM calls (Foundry)</text>
+
+    <line x1="14" y1="92" x2="44" y2="92" stroke="#107c10" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowGreen)"/>
+    <text x="52" y="96" font-size="10" fill="#1f2937">Auth (Managed ID)</text>
+
+    <line x1="14" y1="116" x2="44" y2="116" stroke="#0078d4" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+    <text x="52" y="120" font-size="10" fill="#1f2937">Side dependency</text>
+
+    <rect x="14" y="138" width="14" height="14" rx="3" fill="#ffffff" stroke="#9ca3af" stroke-dasharray="3,2"/>
+    <text x="38" y="150" font-size="10" fill="#1f2937">Optional component</text>
+
+    <rect x="14" y="162" width="14" height="14" rx="3" fill="url(#agentGrad)" stroke="#107c10"/>
+    <text x="38" y="174" font-size="10" fill="#1f2937">AI agent</text>
+
+    <rect x="14" y="186" width="14" height="14" rx="3" fill="url(#foundryGrad)" stroke="#d83b01"/>
+    <text x="38" y="198" font-size="10" fill="#1f2937">Microsoft Foundry</text>
+  </g>
+
+  <!-- ============ FOOTER ============ -->
+  <text x="640" y="800" text-anchor="middle" font-size="11" fill="#6b7280">
+    Deploy with: azd up   |   Auth: DefaultAzureCredential + User-assigned Managed Identity   |   Repo: github.com/KardelRuveyda/foundry-commerce-demo
+  </text>
+</svg>

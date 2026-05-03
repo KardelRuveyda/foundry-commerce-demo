@@ -15,16 +15,18 @@
 
 1. [What is this?](#-what-is-this)
 2. [Architecture](#-architecture)
-3. [What you need](#-what-you-need)
-4. [Quick start](#-quick-start)
-5. [Azure setup (`az login` step by step)](#-azure-setup-az-login-step-by-step)
-6. [Environment variables](#-environment-variables)
-7. [How to run](#-how-to-run)
-8. [Project structure](#-project-structure)
-9. [Demo orders](#-demo-orders)
-10. [Local mode (Ollama)](#-local-mode-ollama)
-11. [Troubleshooting](#-troubleshooting)
-12. [License](#-license)
+3. [Hosting model — this is a LOCAL agent demo](#-hosting-model--this-is-a-local-agent-demo)
+4. [Other hosting options](#-other-hosting-options)
+5. [What you need](#-what-you-need)
+6. [Quick start](#-quick-start)
+7. [Azure setup (`az login` step by step)](#-azure-setup-az-login-step-by-step)
+8. [Environment variables](#-environment-variables)
+9. [How to run](#-how-to-run)
+10. [Project structure](#-project-structure)
+11. [Demo orders](#-demo-orders)
+12. [Local mode (Ollama)](#-local-mode-ollama)
+13. [Troubleshooting](#-troubleshooting)
+14. [License](#-license)
 
 ---
 
@@ -47,6 +49,282 @@ work together like a team:
 - ✅ **Split shipments** when one warehouse is not enough.
 - ✅ **Agent-as-a-tool**: one agent can use another agent like a function.
 - ✅ **Local mode**: payment data stays on your computer (good for PCI-DSS).
+
+---
+
+## 🏠 Hosting model — this is a **LOCAL agent demo**
+
+> **Important:** In this repo the agents run **on your computer**, not in the cloud.
+> Microsoft Foundry is used **only as the LLM gateway** (model + auth + project scope).
+> All agent logic, tools, and state live inside your local `dotnet run` process.
+
+### What runs where?
+
+```
+┌─────────────────────────────────────────────────┐
+│ YOUR MACHINE  (dotnet run)                      │
+│                                                 │
+│  ┌──────────────────────────────────────────┐   │
+│  │ Pipeline orchestrator (Program.cs)       │   │
+│  │  ├─ FraudDetectionAgent                  │   │
+│  │  ├─ InventoryAgent                       │   │
+│  │  ├─ FulfillmentAgent                     │   │
+│  │  └─ CustomerAgent                        │   │
+│  │                                          │   │
+│  │ Tools = your C# code (FraudTools.cs etc.)│   │
+│  │ State = in-memory (OrderDatabase)        │   │
+│  └──────────────────┬───────────────────────┘   │
+└─────────────────────┼───────────────────────────┘
+                      │ HTTPS
+                      ▼
+          ┌────────────────────────┐
+          │ Microsoft Foundry      │
+          │  • gpt-4o-mini model   │  ← only LLM calls go here
+          │  • DefaultAzureCredential
+          └────────────────────────┘
+```
+
+### What Foundry does (in this demo)
+
+| # | Feature | Used? | Notes |
+|---|---------|:-----:|-------|
+| 🧠 Model hosting | ✅ | `gpt-4o-mini` |
+| 🔐 Authentication | ✅ | `DefaultAzureCredential` + `az login` (no API keys) |
+| 📦 Project scope | ✅ | One project for billing, quota, monitoring |
+| 🤖 Foundry Agent Service (cloud-hosted agents) | ❌ | Agents are local |
+| 💬 Threads / conversation history | ❌ | Not persisted |
+| 📚 Vector stores / file search | ❌ | Not used |
+| 🔒 Content safety filters | ❌ | Not configured |
+| 📊 Tracing / evaluation | ❌ | Add OpenTelemetry to enable |
+
+### Why this design?
+
+- 🚀 **Fast** to demo — no deployment needed.
+- 💰 **Cheap** — you only pay for LLM tokens.
+- 🧪 **Easy to debug** — set breakpoints in Visual Studio.
+- 🎤 **Great for talks** — everything visible on stage.
+
+### Limitations of running locally
+
+- ❌ No state persistence — process restart wipes everything.
+- ❌ Single user only.
+- ❌ No autoscale.
+- ❌ Not production-ready as-is.
+
+👉 If you need any of those, see the next section.
+
+---
+
+## ☁️ Other hosting options
+
+Foundry can host much more than just the model. Here are **three ways** to move
+the agents to the cloud, from least to most cloud-native.
+
+### Comparison at a glance
+
+| Option | Code change | State persistence | Multi-user | Scale-to-zero | Best for |
+|--------|:-----------:|:-----------------:|:----------:|:-------------:|----------|
+| 🏠 **Local** (this repo) | — | ❌ | ❌ | — | Demos, dev loop |
+| ☁️ **Container Apps** | Small | ❌ (add Cosmos DB) | ✅ | ✅ | Most teams |
+| 🤖 **Foundry Agent Service** | Medium | ✅ Auto | ✅ | ✅ | Cloud-first agents |
+| ⏱️ **Durable Functions** | Medium | ✅ Auto | ✅ | ✅ | Long-running workflows |
+
+---
+
+### Option 1 — Azure Container Apps (recommended next step)
+
+Wrap the same .NET 10 code in an ASP.NET Core API and deploy to a serverless
+container runtime. Your agent code does **not** change — only `Program.cs`
+becomes a web app.
+
+📐 **Architecture diagram:**
+[`docs/architecture/option2-container-apps.svg`](docs/architecture/option2-container-apps.svg)
+· editable [`.drawio`](docs/architecture/option2-container-apps.drawio)
+
+**Topology:**
+
+```
+Client → Front Door / APIM → Container Apps (foundry-commerce-api)
+                                   ├─ pulls image from ACR
+                                   ├─ uses Managed Identity → Foundry (LLM)
+                                   ├─ logs to App Insights
+                                   └─ stores data in Cosmos DB / Service Bus
+```
+
+**Sketch of the code:**
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton(sp =>
+    new AIProjectClient(new Uri(endpoint), new DefaultAzureCredential()));
+
+var app = builder.Build();
+
+app.MapPost("/api/orders/{orderId}/process", async (string orderId, AIProjectClient client) =>
+{
+    var fraudAgent = client.AsAIAgent(
+        model: "gpt-4o-mini",
+        instructions: "...",
+        tools: [...]);
+
+    var result = await fraudAgent.RunAsync($"Process order {orderId}");
+    return Results.Ok(result);
+});
+
+app.Run();
+```
+
+**Deploy:**
+
+```powershell
+az containerapp up `
+  --name foundry-commerce-api `
+  --resource-group rg-demo `
+  --location swedencentral `
+  --source .
+```
+
+or with Azure Developer CLI:
+
+```powershell
+azd up
+```
+
+**Pros**
+- ✅ Minimal code changes.
+- ✅ Scale-to-zero (you pay $0 when idle).
+- ✅ Managed Identity → no secrets in code.
+- ✅ HTTPS endpoint, custom domains, revisions, blue/green deploys.
+
+**Cons**
+- ❌ You still manage state yourself (add Cosmos DB or SQL).
+- ❌ Threads/conversations are not built-in.
+
+---
+
+### Option 2 — Microsoft Foundry **Agent Service** (cloud-hosted agents)
+
+Let Foundry host the agent itself. Tool definitions, instructions, and
+conversation threads all live in the cloud. Your code calls the agent and
+responds to tool-call requests.
+
+**Sketch:**
+
+```csharp
+using Azure.AI.Agents.Persistent;
+
+var agentsClient = new PersistentAgentsClient(endpoint, credential);
+
+// 1. Create the agent in Foundry (once)
+var agent = await agentsClient.Administration.CreateAgentAsync(
+    model: "gpt-4o-mini",
+    name: "FraudDetectionAgent",
+    instructions: "You analyze fraud risk...",
+    tools: [
+        new FunctionToolDefinition(
+            name: "AnalyzeGeoConsistency",
+            description: "Checks geographic consistency",
+            parameters: BinaryData.FromString("""
+                { "type": "object", "properties": {
+                    "orderId": { "type": "string" }
+                }}
+                """))
+    ]);
+
+// 2. Create a conversation thread
+var thread = await agentsClient.Threads.CreateThreadAsync();
+
+// 3. Send a message and run
+await agentsClient.Messages.CreateMessageAsync(
+    thread.Id, MessageRole.User, "Check ORD-50002");
+var run = await agentsClient.Runs.CreateRunAsync(thread.Id, agent.Id);
+```
+
+**What Foundry stores for you**
+- ✅ Agent definition (tools, instructions, model)
+- ✅ Thread history (every conversation)
+- ✅ Run state (resumable if your code crashes)
+- ✅ Tool call audit trail
+
+**Pros**
+- ✅ Automatic state, threads, history.
+- ✅ Built-in safety, evaluation, tracing in Foundry portal.
+- ✅ You only host the **tool execution** (a webhook or function).
+
+**Cons**
+- ❌ More refactoring — moves agent definition out of C#.
+- ❌ Slightly higher cost (storage + agent runtime).
+
+---
+
+### Option 3 — Azure Durable Functions (long-running workflows)
+
+Use this if your pipeline can take **hours or days** (e.g. waits for a manager
+approval, retries failed shipments, cross-day reconciliation).
+
+**Sketch:**
+
+```csharp
+[Function(nameof(OrderPipeline))]
+public async Task<string> OrderPipeline(
+    [OrchestrationTrigger] TaskOrchestrationContext context)
+{
+    var orderId = context.GetInput<string>();
+
+    // Step 1: fraud check
+    var verdict = await context.CallActivityAsync<string>(
+        nameof(RunFraudAgent), orderId);
+
+    if (verdict == "BLOCKED")
+        return await context.CallActivityAsync<string>(
+            nameof(SendBlockEmail), orderId);
+
+    // Step 2: wait up to 24h for human approval
+    var approved = await context.WaitForExternalEvent<bool>(
+        "ManagerApproval", TimeSpan.FromHours(24));
+
+    // Step 3: fulfillment
+    return await context.CallActivityAsync<string>(
+        nameof(RunFulfillmentAgent), orderId);
+}
+```
+
+**Pros**
+- ✅ State and progress are checkpointed automatically.
+- ✅ Survives restarts, scale-out, and long waits.
+- ✅ Perfect for human-in-the-loop steps.
+
+**Cons**
+- ❌ More moving parts (Functions runtime, storage account).
+- ❌ Steeper learning curve than Container Apps.
+
+---
+
+### Which option should you pick?
+
+```
+             ┌────────────────────────────┐
+             │ Do agents need to keep      │
+             │ state across requests?      │
+             └──────┬─────────────┬───────┘
+                 No │             │ Yes
+                    ▼             ▼
+           ┌─────────────┐   ┌──────────────────────┐
+           │ Container   │   │ Pipeline can take    │
+           │ Apps        │   │ hours / human waits? │
+           │ (Option 1)  │   └────┬─────────┬───────┘
+           └─────────────┘     No │         │ Yes
+                                  ▼         ▼
+                       ┌────────────────┐  ┌────────────────┐
+                       │ Foundry Agent  │  │ Durable        │
+                       │ Service        │  │ Functions      │
+                       │ (Option 2)     │  │ (Option 3)     │
+                       └────────────────┘  └────────────────┘
+```
+
+**Rule of thumb for this demo:** start with Container Apps. It is the smallest
+jump from the local code in this repo and covers ~80% of real-world needs.
 
 ---
 
