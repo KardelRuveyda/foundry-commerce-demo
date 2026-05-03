@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1700 1120" font-family="Segoe UI, Arial, sans-serif">
+  <!-- ==================== DEFS / STYLES ==================== -->
+  <defs>
+    <linearGradient id="gAzure" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#50E6FF"/>
+      <stop offset="100%" stop-color="#0078D4"/>
+    </linearGradient>
+    <linearGradient id="gFunc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD86C"/>
+      <stop offset="100%" stop-color="#F2A93B"/>
+    </linearGradient>
+    <linearGradient id="gFoundry" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#B57EDC"/>
+      <stop offset="100%" stop-color="#742774"/>
+    </linearGradient>
+    <linearGradient id="gApproval" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7FBA00"/>
+      <stop offset="100%" stop-color="#107C10"/>
+    </linearGradient>
+
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0078D4"/>
+    </marker>
+    <marker id="arrOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#F2A93B"/>
+    </marker>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#107C10"/>
+    </marker>
+    <marker id="arrPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#742774"/>
+    </marker>
+    <marker id="arrData" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5C2D91"/>
+    </marker>
+
+    <filter id="shadow" x="-5%" y="-5%" width="115%" height="115%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="0" dy="2" result="o"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <symbol id="ic-frontdoor" viewBox="0 0 48 48">
+      <rect x="4" y="8" width="40" height="32" rx="3" fill="url(#gAzure)"/>
+      <path d="M8,16 L24,28 L40,16" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <circle cx="24" cy="32" r="3" fill="#fff"/>
+    </symbol>
+    <symbol id="ic-apim" viewBox="0 0 48 48">
+      <rect x="4" y="6" width="40" height="36" rx="3" fill="url(#gAzure)"/>
+      <text x="24" y="29" font-size="13" font-weight="700" text-anchor="middle" fill="#fff" font-family="Consolas, monospace">{ }</text>
+    </symbol>
+    <symbol id="ic-entra" viewBox="0 0 48 48">
+      <path d="M24,4 L42,12 L42,28 C42,38 24,44 24,44 C24,44 6,38 6,28 L6,12 Z" fill="#0078D4"/>
+      <path d="M24,16 L18,30 L21,30 L22.5,26 L25.5,26 L27,30 L30,30 Z" fill="#fff"/>
+    </symbol>
+    <symbol id="ic-func" viewBox="0 0 48 48">
+      <rect x="6" y="6" width="36" height="36" rx="4" fill="url(#gFunc)"/>
+      <path d="M26,8 L14,28 L22,28 L20,40 L34,18 L26,18 Z" fill="#fff" stroke="#F2A93B" stroke-width="0.5"/>
+    </symbol>
+    <symbol id="ic-durable" viewBox="0 0 48 48">
+      <rect x="4" y="4" width="40" height="40" rx="6" fill="url(#gFunc)"/>
+      <circle cx="24" cy="26" r="13" fill="#fff" opacity="0.18"/>
+      <circle cx="24" cy="26" r="13" stroke="#fff" stroke-width="2" fill="none"/>
+      <path d="M24,17 L24,26 L31,30" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M28,4 L18,18 L24,18 L22,28 L32,14 L26,14 Z" fill="#D83B01" stroke="#fff" stroke-width="0.5"/>
+    </symbol>
+    <symbol id="ic-taskhub" viewBox="0 0 48 48">
+      <rect x="4" y="10" width="40" height="28" rx="3" fill="url(#gAzure)"/>
+      <rect x="8" y="14" width="32" height="6" fill="#fff" opacity="0.95"/>
+      <rect x="8" y="22" width="32" height="6" fill="#fff" opacity="0.7"/>
+      <rect x="8" y="30" width="32" height="6" fill="#fff" opacity="0.5"/>
+      <circle cx="38" cy="17" r="1.2" fill="#0078D4"/>
+      <circle cx="38" cy="25" r="1.2" fill="#0078D4"/>
+      <circle cx="38" cy="33" r="1.2" fill="#0078D4"/>
+    </symbol>
+    <symbol id="ic-sb" viewBox="0 0 48 48">
+      <rect x="4" y="14" width="40" height="20" rx="2" fill="url(#gAzure)"/>
+      <rect x="9" y="19" width="10" height="10" fill="#fff" opacity="0.85"/>
+      <rect x="22" y="19" width="6" height="10" fill="#fff" opacity="0.85"/>
+      <rect x="31" y="19" width="6" height="10" fill="#fff" opacity="0.85"/>
+      <path d="M19,24 L22,24 M28,24 L31,24" stroke="#0078D4" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="ic-logicapps" viewBox="0 0 48 48">
+      <rect x="6" y="6" width="36" height="36" rx="4" fill="#0072C6"/>
+      <circle cx="16" cy="16" r="3" fill="#fff"/>
+      <circle cx="32" cy="16" r="3" fill="#fff"/>
+      <circle cx="24" cy="32" r="3" fill="#fff"/>
+      <path d="M16,16 L24,32 L32,16" stroke="#fff" stroke-width="2" fill="none"/>
+      <path d="M16,16 L32,16" stroke="#fff" stroke-width="2"/>
+    </symbol>
+    <symbol id="ic-approval" viewBox="0 0 48 48">
+      <rect x="6" y="10" width="36" height="28" rx="3" fill="url(#gApproval)"/>
+      <path d="M10,14 L24,26 L38,14" stroke="#fff" stroke-width="2" fill="none"/>
+      <circle cx="36" cy="34" r="6" fill="#fff"/>
+      <path d="M32,34 L35,37 L40,32" stroke="#107C10" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="ic-mi" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="20" fill="#F25022"/>
+      <circle cx="24" cy="19" r="5" fill="#fff"/>
+      <path d="M14,36 C14,29 19,26 24,26 C29,26 34,29 34,36 Z" fill="#fff"/>
+    </symbol>
+    <symbol id="ic-kv" viewBox="0 0 48 48">
+      <rect x="8" y="14" width="32" height="26" rx="2" fill="url(#gAzure)"/>
+      <path d="M14,14 L14,10 C14,7 18,5 24,5 C30,5 34,7 34,10 L34,14" stroke="#0078D4" stroke-width="3" fill="none"/>
+      <circle cx="24" cy="24" r="4" fill="#FFB900"/>
+      <rect x="22.5" y="26" width="3" height="8" fill="#FFB900"/>
+    </symbol>
+    <symbol id="ic-appconfig" viewBox="0 0 48 48">
+      <rect x="6" y="6" width="36" height="36" rx="3" fill="url(#gAzure)"/>
+      <circle cx="24" cy="24" r="6" fill="none" stroke="#fff" stroke-width="2"/>
+      <path d="M24,14 L24,18 M24,30 L24,34 M14,24 L18,24 M30,24 L34,24" stroke="#fff" stroke-width="2"/>
+    </symbol>
+    <symbol id="ic-foundry" viewBox="0 0 48 48">
+      <path d="M24,4 L40,14 L40,34 L24,44 L8,34 L8,14 Z" fill="url(#gFoundry)"/>
+      <circle cx="24" cy="24" r="6" fill="#fff"/>
+      <circle cx="24" cy="24" r="3" fill="#742774"/>
+    </symbol>
+    <symbol id="ic-model" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="20" fill="url(#gFoundry)"/>
+      <circle cx="14" cy="18" r="3" fill="#fff"/>
+      <circle cx="34" cy="18" r="3" fill="#fff"/>
+      <circle cx="24" cy="32" r="3" fill="#fff"/>
+      <circle cx="24" cy="14" r="3" fill="#fff"/>
+      <path d="M14,18 L24,14 L34,18 L24,32 Z M14,18 L24,32 M34,18 L24,14" stroke="#fff" stroke-width="1.5" fill="none"/>
+    </symbol>
+    <symbol id="ic-cosmos" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="20" fill="#1F4FBF"/>
+      <ellipse cx="24" cy="24" rx="18" ry="7" fill="none" stroke="#fff" stroke-width="2"/>
+      <ellipse cx="24" cy="24" rx="18" ry="7" fill="none" stroke="#fff" stroke-width="2" transform="rotate(60 24 24)"/>
+      <ellipse cx="24" cy="24" rx="18" ry="7" fill="none" stroke="#fff" stroke-width="2" transform="rotate(120 24 24)"/>
+      <circle cx="24" cy="24" r="3" fill="#fff"/>
+    </symbol>
+    <symbol id="ic-sql" viewBox="0 0 48 48">
+      <ellipse cx="24" cy="12" rx="16" ry="5" fill="#0078D4"/>
+      <path d="M8,12 L8,36 C8,39 15,41 24,41 C33,41 40,39 40,36 L40,12" fill="#0078D4"/>
+      <ellipse cx="24" cy="12" rx="16" ry="5" fill="#50E6FF"/>
+      <ellipse cx="24" cy="24" rx="16" ry="5" fill="none" stroke="#50E6FF" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="ic-storage" viewBox="0 0 48 48">
+      <rect x="6" y="10" width="36" height="28" rx="2" fill="#0078D4"/>
+      <rect x="6" y="10" width="36" height="6" fill="#50E6FF"/>
+      <rect x="6" y="20" width="36" height="6" fill="#50E6FF" opacity="0.6"/>
+      <rect x="6" y="30" width="36" height="6" fill="#50E6FF" opacity="0.4"/>
+      <circle cx="38" cy="13" r="1.2" fill="#0078D4"/>
+    </symbol>
+    <symbol id="ic-redis" viewBox="0 0 48 48">
+      <rect x="6" y="10" width="36" height="28" rx="3" fill="#A41E11"/>
+      <text x="24" y="30" font-size="14" font-weight="700" text-anchor="middle" fill="#fff" font-family="Arial Black, Arial, sans-serif">R</text>
+    </symbol>
+    <symbol id="ic-monitor" viewBox="0 0 48 48">
+      <rect x="4" y="10" width="40" height="28" rx="2" fill="#0078D4"/>
+      <path d="M8,30 L16,22 L22,26 L30,16 L40,22" stroke="#50E6FF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="30" cy="16" r="2" fill="#FFB900"/>
+    </symbol>
+    <symbol id="ic-vnet" viewBox="0 0 48 48">
+      <rect x="4" y="14" width="40" height="20" rx="2" fill="#0078D4"/>
+      <circle cx="14" cy="24" r="3" fill="#fff"/>
+      <circle cx="24" cy="24" r="3" fill="#fff"/>
+      <circle cx="34" cy="24" r="3" fill="#fff"/>
+      <path d="M14,24 L24,24 L34,24" stroke="#fff" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="ic-timer" viewBox="0 0 48 48">
+      <circle cx="24" cy="26" r="16" fill="#0078D4"/>
+      <circle cx="24" cy="26" r="12" fill="#fff"/>
+      <path d="M24,18 L24,26 L30,30" stroke="#0078D4" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <rect x="20" y="6" width="8" height="4" fill="#0078D4"/>
+    </symbol>
+  </defs>
+
+  <rect width="1700" height="1120" fill="#FAFBFC"/>
+
+  <text x="60" y="48" font-size="26" font-weight="700" fill="#1B1B1B">FoundryCommerceDemo — Azure Architecture</text>
+  <text x="60" y="72" font-size="15" fill="#605E5C">Option 4 · Azure Durable Functions for long-running workflows · stateful orchestration · external-event approval · timer-driven retry &amp; reconciliation</text>
+
+  <rect x="1380" y="32" width="270" height="44" rx="6" fill="#fff" stroke="#0078D4" stroke-width="1.5"/>
+  <circle cx="1402" cy="54" r="10" fill="#0078D4"/>
+  <text x="1402" y="58" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">AZ</text>
+  <text x="1420" y="51" font-size="12" font-weight="600" fill="#1B1B1B">Subscription: sub-foundry-prod</text>
+  <text x="1420" y="68" font-size="11" fill="#605E5C">Region: West Europe · Tenant: contoso</text>
+
+  <rect x="40" y="100" width="1620" height="900" rx="10" fill="#fff" stroke="#0078D4" stroke-width="2"/>
+  <rect x="40" y="100" width="1620" height="32" rx="10" fill="#0078D4"/>
+  <text x="60" y="121" font-size="14" font-weight="700" fill="#fff">☁  Microsoft Azure</text>
+
+  <!-- USER -->
+  <g transform="translate(60,160)">
+    <rect width="120" height="80" rx="8" fill="#fff" stroke="#605E5C" stroke-width="1.5" filter="url(#shadow)"/>
+    <circle cx="60" cy="32" r="14" fill="#605E5C"/>
+    <path d="M46,55 C48,44 54,42 60,42 C66,42 72,44 74,55" fill="#605E5C"/>
+    <text x="60" y="74" font-size="11" font-weight="600" text-anchor="middle" fill="#1B1B1B">Customer / Order API</text>
+  </g>
+
+  <!-- EDGE -->
+  <g transform="translate(220,150)">
+    <rect width="200" height="240" rx="8" fill="#FFF8E7" stroke="#D83B01" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="14" y="22" font-size="12" font-weight="700" fill="#D83B01">🌐 Edge / Perimeter</text>
+
+    <g transform="translate(20,38)">
+      <rect width="160" height="58" rx="6" fill="#fff" stroke="#D83B01" stroke-width="1" filter="url(#shadow)"/>
+      <use href="#ic-frontdoor" x="8" y="5" width="48" height="48"/>
+      <text x="62" y="22" font-size="12" font-weight="700" fill="#1B1B1B">Front Door</text>
+      <text x="62" y="36" font-size="10" fill="#605E5C">+ WAF Premium</text>
+      <text x="62" y="50" font-size="9" fill="#605E5C" font-family="Consolas, monospace">afd-foundry-prod</text>
+    </g>
+
+    <g transform="translate(20,108)">
+      <rect width="160" height="58" rx="6" fill="#fff" stroke="#D83B01" stroke-width="1" filter="url(#shadow)"/>
+      <use href="#ic-apim" x="8" y="5" width="48" height="48"/>
+      <text x="62" y="22" font-size="12" font-weight="700" fill="#1B1B1B">API Management</text>
+      <text x="62" y="36" font-size="10" fill="#605E5C">JWT · approve webhook</text>
+      <text x="62" y="50" font-size="9" fill="#605E5C" font-family="Consolas, monospace">apim-foundry</text>
+    </g>
+
+    <g transform="translate(20,178)">
+      <rect width="160" height="50" rx="6" fill="#fff" stroke="#D83B01" stroke-width="1" filter="url(#shadow)"/>
+      <use href="#ic-entra" x="8" y="2" width="44" height="44"/>
+      <text x="58" y="22" font-size="12" font-weight="700" fill="#1B1B1B">Microsoft Entra ID</text>
+      <text x="58" y="38" font-size="10" fill="#605E5C">Token issuer for UAMI</text>
+    </g>
+  </g>
+
+  <!-- RG-APP -->
+  <g transform="translate(450,150)">
+    <rect width="460" height="820" rx="8" fill="#FFF8EC" stroke="#F2A93B" stroke-width="1.8"/>
+    <rect width="460" height="32" rx="8" fill="#F2A93B"/>
+    <text x="14" y="21" font-size="13" font-weight="700" fill="#fff">⚡  rg-foundrycommerce-app  ·  Function App (Durable)</text>
+
+    <rect x="14" y="46" width="432" height="500" rx="6" fill="#fff" stroke="#F2A93B" stroke-width="1" stroke-dasharray="4 3"/>
+    <use href="#ic-vnet" x="22" y="52" width="22" height="22"/>
+    <text x="50" y="68" font-size="11" font-weight="700" fill="#F2A93B">VNet — vnet-foundry-prod (10.0.0.0/16) · Functions Premium plan (EP)</text>
+
+    <rect x="28" y="86" width="404" height="34" rx="6" fill="url(#gFunc)"/>
+    <use href="#ic-durable" x="36" y="90" width="26" height="26"/>
+    <text x="68" y="100" font-size="12" font-weight="700" fill="#fff">func-foundry-prod  ·  Function App</text>
+    <text x="68" y="114" font-size="10" fill="#fff">.NET 10 isolated · EP2 plan · VNet integration · UAMI</text>
+
+    <g transform="translate(28,134)">
+      <rect width="195" height="60" rx="6" fill="#fff" stroke="#F2A93B" stroke-width="1.2" filter="url(#shadow)"/>
+      <use href="#ic-func" x="6" y="6" width="40" height="40"/>
+      <text x="52" y="22" font-size="11" font-weight="700" fill="#1B1B1B">HTTP Starter</text>
+      <text x="52" y="36" font-size="9" fill="#605E5C">[HttpTrigger] StartOrder()</text>
+      <text x="52" y="48" font-size="9" font-style="italic" fill="#605E5C">Returns instanceId + status URL</text>
+    </g>
+
+    <g transform="translate(237,134)">
+      <rect width="195" height="60" rx="6" fill="#fff" stroke="#F2A93B" stroke-width="1.2" filter="url(#shadow)"/>
+      <use href="#ic-func" x="6" y="6" width="40" height="40"/>
+      <text x="52" y="22" font-size="11" font-weight="700" fill="#1B1B1B">Approval Webhook</text>
+      <text x="52" y="36" font-size="9" fill="#605E5C">[HttpTrigger] Approve()</text>
+      <text x="52" y="48" font-size="9" font-style="italic" fill="#605E5C">Calls RaiseEventAsync()</text>
+    </g>
+
+    <g transform="translate(28,208)">
+      <rect width="404" height="100" rx="8" fill="#FFF1D6" stroke="#F2A93B" stroke-width="2" filter="url(#shadow)"/>
+      <use href="#ic-durable" x="10" y="10" width="56" height="56"/>
+      <text x="76" y="28" font-size="13" font-weight="700" fill="#1B1B1B">⏱ OrderOrchestrator</text>
+      <text x="76" y="44" font-size="10" fill="#605E5C">[OrchestrationTrigger] · stateful · replay-safe · deterministic</text>
+      <text x="76" y="58" font-size="9.5" fill="#1B1B1B" font-family="Consolas, monospace">await CallActivityAsync(...)</text>
+      <text x="76" y="72" font-size="9.5" fill="#1B1B1B" font-family="Consolas, monospace">await WaitForExternalEvent("ManagerApproval")</text>
+      <text x="76" y="86" font-size="9.5" fill="#1B1B1B" font-family="Consolas, monospace">await CreateTimer(retryDelay)</text>
+    </g>
+
+    <text x="28" y="332" font-size="11" font-weight="700" fill="#F2A93B">Activity Functions  ·  fan-out / fan-in</text>
+
+    <g transform="translate(28,344)">
+      <rect width="100" height="78" rx="6" fill="#fff" stroke="#F2A93B" stroke-width="1" filter="url(#shadow)"/>
+      <use href="#ic-func" x="26" y="4" width="48" height="48"/>
+      <text x="50" y="62" font-size="9.5" font-weight="700" text-anchor="middle" fill="#1B1B1B">FraudCheck</text>
+      <text x="50" y="73" font-size="8" text-anchor="middle" fill="#605E5C">→ Foundry LLM</text>
+    </g>
+    <g transform="translate(132,344)">
+      <rect width="100" height="78" rx="6" fill="#fff" stroke="#F2A93B" stroke-width="1" filter="url(#shadow)"/>
+      <use href="#ic-func" x="26" y="4" width="48" height="48"/>
+      <text x="50" y="62" font-size="9.5" font-weight="700" text-anchor="middle" fill="#1B1B1B">Inventory</text>
+      <text x="50" y="73" font-size="8" text-anchor="middle" fill="#605E5C">→ Cosmos / Redis</text>
+    </g>
+    <g transform="translate(236,344)">
+      <rect width="100" height="78" rx="6" fill="#fff" stroke="#F2A93B" stroke-width="1" filter="url(#shadow)"/>
+      <use href="#ic-func" x="26" y="4" width="48" height="48"/>
+      <text x="50" y="62" font-size="9.5" font-weight="700" text-anchor="middle" fill="#1B1B1B">Fulfillment</text>
+      <text x="50" y="73" font-size="8" text-anchor="middle" fill="#605E5C">→ SQL / Storage</text>
+    </g>
+    <g transform="translate(340,344)">
+      <rect width="92" height="78" rx="6" fill="#fff" stroke="#F2A93B" stroke-width="1" filter="url(#shadow)"/>
+      <use href="#ic-func" x="22" y="4" width="48" height="48"/>
+      <text x="46" y="62" font-size="9.5" font-weight="700" text-anchor="middle" fill="#1B1B1B">Customer</text>
+      <text x="46" y="73" font-size="8" text-anchor="middle" fill="#605E5C">→ Email/Teams</text>
+    </g>
+
+    <g transform="translate(28,438)">
+      <rect width="404" height="44" rx="6" fill="#FFF1D6" stroke="#F2A93B" stroke-width="1"/>
+      <use href="#ic-timer" x="6" y="2" width="40" height="40"/>
+      <text x="52" y="20" font-size="11" font-weight="700" fill="#1B1B1B">Durable Timers + Retry Policies</text>
+      <text x="52" y="34" font-size="9" fill="#605E5C">CreateTimer for delays · automatic retry on activity failure · cron schedules</text>
+    </g>
+
+    <g transform="translate(28,494)">
+      <rect width="404" height="44" rx="6" fill="#E7F3FF" stroke="#0078D4" stroke-width="1.2"/>
+      <use href="#ic-taskhub" x="6" y="2" width="40" height="40"/>
+      <text x="52" y="20" font-size="11" font-weight="700" fill="#1B1B1B">Task Hub  ·  Azure Storage (Durable Task backend)</text>
+      <text x="52" y="34" font-size="9" fill="#605E5C">Control Queue · Work-Item Queue · History Table · Instance Table</text>
+    </g>
+
+    <g transform="translate(28,562)">
+      <rect width="404" height="36" rx="4" fill="#fff" stroke="#0078D4" stroke-width="1" filter="url(#shadow)"/>
+      <use href="#ic-sb" x="4" y="-2" width="40" height="40"/>
+      <text x="50" y="16" font-size="11" font-weight="700" fill="#1B1B1B">Service Bus (Premium · VNet)</text>
+      <text x="50" y="28" font-size="9" fill="#605E5C">orders · downstream events · DLQ for failed orchestrations</text>
+    </g>
+
+    <text x="28" y="624" font-size="11" font-weight="700" fill="#F2A93B">Supporting services</text>
+
+    <g transform="translate(28,636)">
+      <rect width="130" height="74" rx="6" fill="#fff" stroke="#F25022" stroke-width="1.5" filter="url(#shadow)"/>
+      <use href="#ic-mi" x="40" y="4" width="48" height="48"/>
+      <text x="65" y="60" font-size="10" font-weight="700" text-anchor="middle" fill="#1B1B1B">Managed Identity</text>
+      <text x="65" y="71" font-size="8" text-anchor="middle" fill="#D83B01">id-foundry-fn (UAMI)</text>
+    </g>
+    <g transform="translate(166,636)">
+      <rect width="130" height="74" rx="6" fill="#fff" stroke="#F2A93B" stroke-width="1" filter="url(#shadow)"/>
+      <use href="#ic-kv" x="40" y="4" width="48" height="48"/>
+      <text x="65" y="60" font-size="10" font-weight="700" text-anchor="middle" fill="#1B1B1B">Key Vault</text>
+      <text x="65" y="71" font-size="8" text-anchor="middle" fill="#605E5C">RBAC · PE</text>
+    </g>
+    <g transform="translate(304,636)">
+      <rect width="130" height="74" rx="6" fill="#fff" stroke="#F2A93B" stroke-width="1" filter="url(#shadow)"/>
+      <use href="#ic-appconfig" x="40" y="4" width="48" height="48"/>
+      <text x="65" y="60" font-size="10" font-weight="700" text-anchor="middle" fill="#1B1B1B">App Configuration</text>
+      <text x="65" y="71" font-size="8" text-anchor="middle" fill="#605E5C">Feature flags</text>
+    </g>
+
+    <rect x="28" y="724" width="404" height="80" rx="6" fill="#FFF4F0" stroke="#F25022" stroke-width="1"/>
+    <text x="38" y="744" font-size="11" font-weight="700" fill="#D83B01">🔐 Zero-secret design</text>
+    <text x="38" y="760" font-size="9.5" fill="#1B1B1B">UAMI holds RBAC: Storage Blob Data Owner · Storage Queue · Storage Table</text>
+    <text x="38" y="774" font-size="9.5" fill="#1B1B1B">SB Sender·Receiver · KV Reader · Cosmos Contributor · AI Developer</text>
+    <text x="38" y="792" font-size="9" font-style="italic" fill="#605E5C">No connection strings · all bindings authenticate via UAMI tokens</text>
+  </g>
+
+  <!-- APPROVAL -->
+  <g transform="translate(940,150)">
+    <rect width="240" height="380" rx="8" fill="#EAF6E1" stroke="#107C10" stroke-width="1.8"/>
+    <rect width="240" height="32" rx="8" fill="#107C10"/>
+    <text x="14" y="21" font-size="13" font-weight="700" fill="#fff">⏳  Long-running approval</text>
+
+    <g transform="translate(20,52)">
+      <rect width="200" height="76" rx="6" fill="#fff" stroke="#107C10" stroke-width="1.2" filter="url(#shadow)"/>
+      <use href="#ic-logicapps" x="8" y="14" width="48" height="48"/>
+      <text x="62" y="26" font-size="12" font-weight="700" fill="#1B1B1B">Logic App</text>
+      <text x="62" y="42" font-size="9.5" fill="#605E5C">la-approval-flow</text>
+      <text x="62" y="56" font-size="9" fill="#605E5C">Triggered when high-value</text>
+      <text x="62" y="68" font-size="9" fill="#605E5C">order awaits manager</text>
+    </g>
+
+    <g transform="translate(20,144)">
+      <rect width="200" height="76" rx="6" fill="#fff" stroke="#107C10" stroke-width="1.2" filter="url(#shadow)"/>
+      <use href="#ic-approval" x="8" y="14" width="48" height="48"/>
+      <text x="62" y="26" font-size="12" font-weight="700" fill="#1B1B1B">Teams · Outlook</text>
+      <text x="62" y="42" font-size="9.5" fill="#605E5C">Adaptive Card with</text>
+      <text x="62" y="56" font-size="9.5" fill="#605E5C">Approve / Reject buttons</text>
+      <text x="62" y="68" font-size="9" font-style="italic" fill="#107C10">Sent to manager group</text>
+    </g>
+
+    <g transform="translate(20,236)">
+      <rect width="200" height="68" rx="6" fill="#fff" stroke="#605E5C" stroke-width="1" filter="url(#shadow)"/>
+      <circle cx="40" cy="34" r="14" fill="#605E5C"/>
+      <path d="M26,55 C28,44 34,42 40,42 C46,42 52,44 54,55" fill="#605E5C"/>
+      <text x="68" y="28" font-size="11" font-weight="700" fill="#1B1B1B">Approver / Manager</text>
+      <text x="68" y="44" font-size="9" fill="#605E5C">Reviews order context,</text>
+      <text x="68" y="56" font-size="9" fill="#605E5C">clicks Approve / Reject</text>
+    </g>
+
+    <rect x="20" y="316" width="200" height="50" rx="6" fill="#FFFFFF" stroke="#107C10" stroke-width="1" stroke-dasharray="3 2"/>
+    <text x="30" y="334" font-size="10" font-weight="700" fill="#107C10">⏸ Orchestrator paused</text>
+    <text x="30" y="348" font-size="9" fill="#605E5C">No compute is consumed</text>
+    <text x="30" y="360" font-size="9" fill="#605E5C">while waiting (could be days)</text>
+  </g>
+
+  <!-- RG-FOUNDRY -->
+  <g transform="translate(940,548)">
+    <rect width="240" height="422" rx="8" fill="#F8F0FF" stroke="#742774" stroke-width="1.8"/>
+    <rect width="240" height="32" rx="8" fill="#742774"/>
+    <text x="14" y="21" font-size="13" font-weight="700" fill="#fff">🤖  rg-foundrycommerce-foundry</text>
+
+    <g transform="translate(20,52)">
+      <rect width="200" height="64" rx="6" fill="#fff" stroke="#742774" stroke-width="1.2" filter="url(#shadow)"/>
+      <use href="#ic-foundry" x="8" y="8" width="48" height="48"/>
+      <text x="62" y="22" font-size="12" font-weight="700" fill="#1B1B1B">Foundry Project</text>
+      <text x="62" y="38" font-size="9" fill="#605E5C">proj-commerce</text>
+      <text x="62" y="52" font-size="9" font-style="italic" fill="#605E5C">Called from activities</text>
+    </g>
+
+    <text x="20" y="138" font-size="11" font-weight="700" fill="#742774">Model Deployments</text>
+
+    <g transform="translate(20,148)">
+      <rect width="200" height="44" rx="4" fill="#fff" stroke="#742774" stroke-width="0.8"/>
+      <use href="#ic-model" x="4" y="2" width="40" height="40"/>
+      <text x="50" y="18" font-size="10" font-weight="700" fill="#1B1B1B">gpt-4o-mini</text>
+      <text x="50" y="32" font-size="8" fill="#605E5C">PAYG · primary chat model</text>
+    </g>
+    <g transform="translate(20,196)">
+      <rect width="200" height="44" rx="4" fill="#fff" stroke="#742774" stroke-width="0.8"/>
+      <use href="#ic-model" x="4" y="2" width="40" height="40"/>
+      <text x="50" y="18" font-size="10" font-weight="700" fill="#1B1B1B">gpt-4o (PTU)</text>
+      <text x="50" y="32" font-size="8" fill="#605E5C">Reserved capacity · fallback</text>
+    </g>
+    <g transform="translate(20,244)">
+      <rect width="200" height="44" rx="4" fill="#fff" stroke="#742774" stroke-width="0.8"/>
+      <use href="#ic-model" x="4" y="2" width="40" height="40"/>
+      <text x="50" y="18" font-size="10" font-weight="700" fill="#1B1B1B">text-embedding-3-small</text>
+      <text x="50" y="32" font-size="8" fill="#605E5C">Vector index for RAG</text>
+    </g>
+
+    <rect x="20" y="300" width="200" height="100" rx="6" fill="#FAF5FF" stroke="#742774" stroke-width="0.8" stroke-dasharray="3 2"/>
+    <text x="30" y="318" font-size="10" font-weight="700" fill="#742774">Stateless model calls</text>
+    <text x="30" y="334" font-size="9" fill="#605E5C">Activities call models for:</text>
+    <text x="30" y="348" font-size="9" fill="#605E5C">• Fraud reasoning</text>
+    <text x="30" y="362" font-size="9" fill="#605E5C">• Customer email drafting</text>
+    <text x="30" y="376" font-size="9" fill="#605E5C">• Anomaly detection</text>
+    <text x="30" y="392" font-size="9" font-style="italic" fill="#742774">No persistent agents needed</text>
+  </g>
+
+  <!-- RG-DATA -->
+  <g transform="translate(1200,150)">
+    <rect width="220" height="820" rx="8" fill="#F4F0FA" stroke="#5C2D91" stroke-width="1.8"/>
+    <rect width="220" height="32" rx="8" fill="#5C2D91"/>
+    <text x="14" y="21" font-size="13" font-weight="700" fill="#fff">💾  rg-foundrycommerce-data</text>
+
+    <g transform="translate(20,52)">
+      <rect width="180" height="84" rx="6" fill="#fff" stroke="#5C2D91" stroke-width="1.2" filter="url(#shadow)"/>
+      <use href="#ic-cosmos" x="8" y="6" width="48" height="48"/>
+      <text x="64" y="22" font-size="11" font-weight="700" fill="#1B1B1B">Cosmos DB</text>
+      <text x="64" y="36" font-size="9" fill="#605E5C">Order state · customers</text>
+      <text x="8" y="68" font-size="9" fill="#605E5C">Containers:</text>
+      <text x="8" y="78" font-size="8" font-family="Consolas, monospace" fill="#605E5C">orders, audit-logs</text>
+    </g>
+
+    <g transform="translate(20,154)">
+      <rect width="180" height="84" rx="6" fill="#fff" stroke="#5C2D91" stroke-width="1.2" filter="url(#shadow)"/>
+      <use href="#ic-sql" x="8" y="6" width="48" height="48"/>
+      <text x="64" y="22" font-size="11" font-weight="700" fill="#1B1B1B">Azure SQL</text>
+      <text x="64" y="36" font-size="9" fill="#605E5C">Reporting + reconciliation</text>
+      <text x="8" y="68" font-size="9" fill="#605E5C">Tables:</text>
+      <text x="8" y="78" font-size="8" font-family="Consolas, monospace" fill="#605E5C">warehouses, stock_history</text>
+    </g>
+
+    <g transform="translate(20,256)">
+      <rect width="180" height="84" rx="6" fill="#fff" stroke="#5C2D91" stroke-width="1.2" filter="url(#shadow)"/>
+      <use href="#ic-storage" x="8" y="6" width="48" height="48"/>
+      <text x="64" y="22" font-size="11" font-weight="700" fill="#1B1B1B">Storage Account</text>
+      <text x="64" y="36" font-size="9" fill="#605E5C">Documents · evidence</text>
+      <text x="8" y="68" font-size="9" fill="#605E5C">Containers:</text>
+      <text x="8" y="78" font-size="8" font-family="Consolas, monospace" fill="#605E5C">labels, invoices</text>
+    </g>
+
+    <g transform="translate(20,358)">
+      <rect width="180" height="84" rx="6" fill="#fff" stroke="#5C2D91" stroke-width="1.2" filter="url(#shadow)"/>
+      <use href="#ic-redis" x="8" y="6" width="48" height="48"/>
+      <text x="64" y="22" font-size="11" font-weight="700" fill="#1B1B1B">Azure Managed Redis</text>
+      <text x="64" y="36" font-size="9" fill="#605E5C">Cache · idempotency</text>
+      <text x="8" y="68" font-size="9" fill="#605E5C">Keys:</text>
+      <text x="8" y="78" font-size="8" font-family="Consolas, monospace" fill="#605E5C">stock:*, idem:*</text>
+    </g>
+
+    <rect x="20" y="466" width="180" height="58" rx="4" fill="#F4F0FA" stroke="#5C2D91" stroke-width="0.8" stroke-dasharray="3 2"/>
+    <text x="30" y="484" font-size="10" font-weight="700" fill="#5C2D91">🔒 Encryption + PE</text>
+    <text x="30" y="498" font-size="9" fill="#605E5C">CMK from Key Vault</text>
+    <text x="30" y="510" font-size="9" fill="#605E5C">All endpoints private</text>
+    <text x="30" y="520" font-size="8" fill="#605E5C" font-style="italic">Reachable only via VNet</text>
+
+    <rect x="20" y="540" width="180" height="100" rx="4" fill="#FAF5FA" stroke="#5C2D91" stroke-width="0.8"/>
+    <text x="30" y="558" font-size="10" font-weight="700" fill="#5C2D91">📊 Reconciliation jobs</text>
+    <text x="30" y="572" font-size="9" fill="#605E5C">Timer-triggered orchestrators</text>
+    <text x="30" y="586" font-size="9" fill="#605E5C">read SQL + Storage every</text>
+    <text x="30" y="600" font-size="9" fill="#605E5C">night to close-out the day</text>
+    <text x="30" y="616" font-size="9" fill="#605E5C">Cross-day stock + invoice</text>
+    <text x="30" y="630" font-size="8" font-style="italic" fill="#107C10">long-running, durable, idempotent</text>
+  </g>
+
+  <!-- OBSERVABILITY STRIP -->
+  <g transform="translate(60,990)">
+    <rect width="1580" height="68" rx="8" fill="#fff" stroke="#0078D4" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="14" y="22" font-size="12" font-weight="700" fill="#0078D4">📊 Observability — every orchestration, activity and external event is correlated by instanceId</text>
+
+    <g transform="translate(20,28)">
+      <use href="#ic-monitor" x="0" y="0" width="32" height="32"/>
+      <text x="40" y="14" font-size="11" font-weight="700" fill="#1B1B1B">Application Insights</text>
+      <text x="40" y="28" font-size="9" fill="#605E5C">Function traces · dependencies</text>
+    </g>
+    <g transform="translate(310,28)">
+      <use href="#ic-monitor" x="0" y="0" width="32" height="32"/>
+      <text x="40" y="14" font-size="11" font-weight="700" fill="#1B1B1B">Log Analytics</text>
+      <text x="40" y="28" font-size="9" fill="#605E5C">KQL · centralized logs</text>
+    </g>
+    <g transform="translate(600,28)">
+      <use href="#ic-monitor" x="0" y="0" width="32" height="32"/>
+      <text x="40" y="14" font-size="11" font-weight="700" fill="#1B1B1B">Azure Monitor</text>
+      <text x="40" y="28" font-size="9" fill="#605E5C">Alerts · stuck-orchestration KPI</text>
+    </g>
+    <g transform="translate(900,28)">
+      <use href="#ic-monitor" x="0" y="0" width="32" height="32"/>
+      <text x="40" y="14" font-size="11" font-weight="700" fill="#1B1B1B">Durable Task UI</text>
+      <text x="40" y="28" font-size="9" fill="#605E5C">Inspect instance history · replay</text>
+    </g>
+    <g transform="translate(1230,28)">
+      <use href="#ic-monitor" x="0" y="0" width="32" height="32"/>
+      <text x="40" y="14" font-size="11" font-weight="700" fill="#1B1B1B">Defender for Cloud</text>
+      <text x="40" y="28" font-size="9" fill="#605E5C">Posture · threat detection</text>
+    </g>
+  </g>
+
+  <!-- FLOW ARROWS -->
+  <line x1="180" y1="200" x2="240" y2="200" stroke="#0078D4" stroke-width="2.5" marker-end="url(#arr)"/>
+  <circle cx="210" cy="200" r="11" fill="#0078D4"/>
+  <text x="210" y="204" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">1</text>
+
+  <line x1="420" y1="290" x2="478" y2="284" stroke="#0078D4" stroke-width="2.5" marker-end="url(#arr)"/>
+  <circle cx="450" cy="282" r="11" fill="#0078D4"/>
+  <text x="450" y="286" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">2</text>
+
+  <line x1="575" y1="350" x2="575" y2="408" stroke="#F2A93B" stroke-width="2.5" marker-end="url(#arrOrange)"/>
+  <circle cx="585" cy="378" r="11" fill="#F2A93B"/>
+  <text x="585" y="382" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">3</text>
+
+  <line x1="652" y1="510" x2="558" y2="544" stroke="#F2A93B" stroke-width="2" marker-end="url(#arrOrange)"/>
+  <line x1="652" y1="510" x2="660" y2="544" stroke="#F2A93B" stroke-width="2" marker-end="url(#arrOrange)"/>
+  <line x1="652" y1="510" x2="762" y2="544" stroke="#F2A93B" stroke-width="2" marker-end="url(#arrOrange)"/>
+  <line x1="652" y1="510" x2="858" y2="544" stroke="#F2A93B" stroke-width="2" marker-end="url(#arrOrange)"/>
+  <circle cx="690" cy="528" r="11" fill="#F2A93B"/>
+  <text x="690" y="532" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">4</text>
+
+  <path d="M 854,308 C 900,300 920,280 940,250" stroke="#107C10" stroke-width="2.5" fill="none" marker-end="url(#arrGreen)" stroke-dasharray="6 3"/>
+  <circle cx="900" cy="280" r="11" fill="#107C10"/>
+  <text x="900" y="284" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">5</text>
+
+  <path d="M 940,408 C 800,408 720,300 670,194" stroke="#107C10" stroke-width="2.5" fill="none" marker-end="url(#arrGreen)"/>
+  <circle cx="780" cy="350" r="11" fill="#107C10"/>
+  <text x="780" y="354" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">6</text>
+
+  <line x1="858" y1="610" x2="940" y2="610" stroke="#742774" stroke-width="2.5" marker-end="url(#arrPurple)" stroke-dasharray="6 3"/>
+  <circle cx="900" cy="610" r="11" fill="#742774"/>
+  <text x="900" y="614" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">7</text>
+
+  <line x1="912" y1="540" x2="1198" y2="200" stroke="#5C2D91" stroke-width="2" marker-end="url(#arrData)"/>
+  <circle cx="1055" cy="370" r="11" fill="#5C2D91"/>
+  <text x="1055" y="374" font-size="11" font-weight="700" text-anchor="middle" fill="#fff">8</text>
+
+  <!-- LEGEND PANELS -->
+  <g transform="translate(60,260)">
+    <rect width="120" height="190" rx="8" fill="#FFF8EC" stroke="#F2A93B" stroke-width="1.2"/>
+    <text x="10" y="20" font-size="11" font-weight="700" fill="#F2A93B">⏱ Why Durable?</text>
+    <text x="10" y="40" font-size="9" fill="#1B1B1B">• Stateful</text>
+    <text x="10" y="54" font-size="9" fill="#1B1B1B">  orchestration</text>
+    <text x="10" y="74" font-size="9" fill="#1B1B1B">• External event</text>
+    <text x="10" y="88" font-size="9" fill="#1B1B1B">  wait (no $)</text>
+    <text x="10" y="108" font-size="9" fill="#1B1B1B">• Built-in retry</text>
+    <text x="10" y="122" font-size="9" fill="#1B1B1B">  + timer</text>
+    <text x="10" y="142" font-size="9" fill="#1B1B1B">• Fan-out /</text>
+    <text x="10" y="156" font-size="9" fill="#1B1B1B">  fan-in</text>
+    <text x="10" y="178" font-size="8" font-style="italic" fill="#605E5C">Replay-safe code</text>
+  </g>
+
+  <g transform="translate(60,470)">
+    <rect width="380" height="208" rx="8" fill="#fff" stroke="#605E5C" stroke-width="1"/>
+    <rect width="380" height="28" rx="8" fill="#1B1B1B"/>
+    <text x="14" y="19" font-size="12" font-weight="700" fill="#fff">🔄 Workflow legend</text>
+
+    <circle cx="22" cy="50" r="9" fill="#0078D4"/>
+    <text x="22" y="54" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">1</text>
+    <text x="38" y="54" font-size="10" fill="#1B1B1B"><tspan font-weight="700">User → Front Door</tspan> · HTTPS · WAF · TLS termination</text>
+
+    <circle cx="22" cy="74" r="9" fill="#0078D4"/>
+    <text x="22" y="78" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">2</text>
+    <text x="38" y="78" font-size="10" fill="#1B1B1B"><tspan font-weight="700">APIM → HTTP Starter</tspan> · token validated · enters VNet</text>
+
+    <circle cx="22" cy="98" r="9" fill="#F2A93B"/>
+    <text x="22" y="102" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">3</text>
+    <text x="38" y="102" font-size="10" fill="#1B1B1B"><tspan font-weight="700">Starter → Orchestrator</tspan> · instanceId, state in Task Hub</text>
+
+    <circle cx="22" cy="122" r="9" fill="#F2A93B"/>
+    <text x="22" y="126" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">4</text>
+    <text x="38" y="126" font-size="10" fill="#1B1B1B"><tspan font-weight="700">Orchestrator → Activities</tspan> · fan-out · parallel</text>
+
+    <circle cx="22" cy="146" r="9" fill="#107C10"/>
+    <text x="22" y="150" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">5</text>
+    <text x="38" y="150" font-size="10" fill="#1B1B1B"><tspan font-weight="700">Orchestrator pauses</tspan> · Logic App alerts manager</text>
+
+    <circle cx="22" cy="170" r="9" fill="#107C10"/>
+    <text x="22" y="174" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">6</text>
+    <text x="38" y="174" font-size="10" fill="#1B1B1B"><tspan font-weight="700">Manager approves</tspan> · webhook raises external event</text>
+
+    <circle cx="22" cy="194" r="9" fill="#742774"/>
+    <text x="22" y="198" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">7</text>
+    <text x="38" y="198" font-size="10" fill="#1B1B1B"><tspan font-weight="700">Activity → Foundry</tspan> (LLM call)</text>
+
+    <circle cx="218" cy="194" r="9" fill="#5C2D91"/>
+    <text x="218" y="198" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">8</text>
+    <text x="234" y="198" font-size="10" fill="#1B1B1B"><tspan font-weight="700">Activity → Data tier</tspan></text>
+  </g>
+
+  <g transform="translate(60,696)">
+    <rect width="380" height="160" rx="8" fill="#fff" stroke="#605E5C" stroke-width="1"/>
+    <text x="14" y="22" font-size="12" font-weight="700" fill="#1B1B1B">Connection types</text>
+
+    <line x1="14" y1="44" x2="60" y2="44" stroke="#0078D4" stroke-width="2.5"/>
+    <text x="68" y="48" font-size="10" fill="#1B1B1B">Synchronous HTTPS (ingress)</text>
+
+    <line x1="14" y1="64" x2="60" y2="64" stroke="#F2A93B" stroke-width="2.5"/>
+    <text x="68" y="68" font-size="10" fill="#1B1B1B">Durable orchestration call</text>
+
+    <line x1="14" y1="84" x2="60" y2="84" stroke="#107C10" stroke-width="2.5" stroke-dasharray="6 3"/>
+    <text x="68" y="88" font-size="10" fill="#1B1B1B">Long-running approval (async)</text>
+
+    <line x1="14" y1="104" x2="60" y2="104" stroke="#742774" stroke-width="2.5" stroke-dasharray="6 3"/>
+    <text x="68" y="108" font-size="10" fill="#1B1B1B">LLM call (activity → Foundry)</text>
+
+    <line x1="14" y1="124" x2="60" y2="124" stroke="#5C2D91" stroke-width="2"/>
+    <text x="68" y="128" font-size="10" fill="#1B1B1B">Data tier access (UAMI)</text>
+
+    <text x="14" y="150" font-size="9" font-style="italic" fill="#605E5C">All bindings authenticated via UAMI · no connection strings</text>
+  </g>
+
+  <g transform="translate(60,870)">
+    <rect width="380" height="110" rx="8" fill="#fff" stroke="#605E5C" stroke-width="1"/>
+    <text x="14" y="22" font-size="12" font-weight="700" fill="#1B1B1B">Resource groups</text>
+
+    <rect x="14" y="34" width="14" height="14" rx="2" fill="#F2A93B"/>
+    <text x="34" y="46" font-size="10" fill="#1B1B1B">rg-foundrycommerce-app   ·   Function App + Task Hub</text>
+
+    <rect x="14" y="54" width="14" height="14" rx="2" fill="#107C10"/>
+    <text x="34" y="66" font-size="10" fill="#1B1B1B">Long-running approval   ·   Logic App + Teams</text>
+
+    <rect x="14" y="74" width="14" height="14" rx="2" fill="#742774"/>
+    <text x="34" y="86" font-size="10" fill="#1B1B1B">rg-foundrycommerce-foundry   ·   AI Project + models</text>
+
+    <rect x="14" y="94" width="14" height="14" rx="2" fill="#5C2D91"/>
+    <text x="34" y="105" font-size="10" fill="#1B1B1B">rg-foundrycommerce-data   ·   Cosmos · SQL · Storage · Redis</text>
+  </g>
+
+  <text x="60" y="1095" font-size="10" fill="#605E5C">Diagram: docs/architecture/option4-durable-functions-azure.svg · authoritative source: option4-durable-functions-azure.drawio</text>
+</svg>

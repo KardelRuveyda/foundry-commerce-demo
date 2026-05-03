@@ -58,6 +58,17 @@ work together like a team:
 > Microsoft Foundry is used **only as the LLM gateway** (model + auth + project scope).
 > All agent logic, tools, and state live inside your local `dotnet run` process.
 
+### 📐 Architecture diagrams
+
+| Scenario | SVG (preview) | draw.io (editable) |
+|----------|---------------|--------------------|
+| 🏠 **Local agents** (this repo) | _inline below_ | — |
+| ☁️ **Option 1 — Container Apps** | [option2-container-apps.svg](docs/architecture/option2-container-apps.svg) | [.drawio](docs/architecture/option2-container-apps.drawio) |
+| 🏗️ **Option 2 — Foundry Agent Service (Azure resources)** ⭐ | [option3-foundry-agent-service-azure.svg](docs/architecture/option3-foundry-agent-service-azure.svg) | [.drawio](docs/architecture/option3-foundry-agent-service-azure.drawio) |
+| 📖 Option 2 — Foundry Agent Service (run lifecycle, story-style) | [option3-foundry-agent-service-detailed.svg](docs/architecture/option3-foundry-agent-service-detailed.svg) | [.drawio](docs/architecture/option3-foundry-agent-service-detailed.drawio) |
+| 🤖 Option 2 — Foundry Agent Service (compact overview) | [option3-foundry-agent-service.svg](docs/architecture/option3-foundry-agent-service.svg) | [.drawio](docs/architecture/option3-foundry-agent-service.drawio) |
+| ⏱️ **Option 4 — Azure Durable Functions** (long-running workflows) | [option4-durable-functions-azure.svg](docs/architecture/option4-durable-functions-azure.svg) | [.drawio](docs/architecture/option4-durable-functions-azure.drawio) |
+
 ### What runs where?
 
 ```
@@ -208,6 +219,76 @@ azd up
 Let Foundry host the agent itself. Tool definitions, instructions, and
 conversation threads all live in the cloud. Your code calls the agent and
 responds to tool-call requests.
+
+🏗️ **Azure architecture (production-ready resource topology):**
+[`docs/architecture/option3-foundry-agent-service-azure.svg`](docs/architecture/option3-foundry-agent-service-azure.svg)
+· editable [`.drawio`](docs/architecture/option3-foundry-agent-service-azure.drawio)
+
+This is the **“what do I deploy?”** view. It shows real Azure resources, resource
+groups, networking, identity, and data services laid out the way they would look
+in production.
+
+**Resource groups in the diagram:**
+
+| RG | Color | Contents |
+|----|-------|----------|
+| `rg-foundrycommerce-app` | 🟩 Green | Container Apps (api + worker), ACR, UAMI, Key Vault, App Configuration, Service Bus |
+| `rg-foundrycommerce-foundry` | 🟧 Orange | Foundry Hub + Project, PersistentAgents, Threads/Runs, model deployments, vector store, content safety |
+| `rg-foundrycommerce-data` | 🟪 Purple | Cosmos DB (NoSQL), Azure SQL, Storage Account, Azure Managed Redis |
+
+**Cross-cutting concerns (shown on the side):**
+
+- 🆔 **Microsoft Entra ID** → issues tokens to a User-Assigned Managed Identity. **No API keys anywhere.**
+- 🔐 **VNet** (`vnet-foundry-prod`) with private endpoints for Key Vault, ACR, Cosmos DB, Storage, Foundry.
+- 🛡️ **Edge** — Front Door + WAF + API Management + DDoS Protection.
+- 📊 **Observability** — Application Insights, Log Analytics, Azure Monitor, Foundry built-in tracing, Defender for Cloud.
+
+**Run lifecycle (numbered arrows on the diagram):**
+
+| # | Color | What happens |
+|---|-------|--------------|
+| ① | 🟧 Orange | Container App calls `Runs.CreateRunAsync` on Foundry Agent Service |
+| ② | 🟪 Purple | Foundry replies with `requires_action` → “call tool X” |
+| ③ | 🟩 Green | Container App runs the C# tool and posts back via `SubmitToolOutputsAsync` |
+
+For a step-by-step **run lifecycle** explanation (story-style), see
+[`option3-foundry-agent-service-detailed.svg`](docs/architecture/option3-foundry-agent-service-detailed.svg).
+For a single-page **compact overview**, see
+[`option3-foundry-agent-service.svg`](docs/architecture/option3-foundry-agent-service.svg).
+
+**Topology:**
+
+```
+Client → Container Apps (thin API)
+              │   ① start run
+              ▼
+       ┌─────────────────────────────────────────┐
+       │ Microsoft Foundry — Agent Service       │
+       │  • PersistentAgents (definitions)       │
+       │  • Threads + Runs (auto-saved state)    │
+       │  • Vector store (optional, RAG)         │
+       │  • Model deployment (gpt-4o-mini)       │
+       │  • Built-in safety + tracing            │
+       └──────────────┬──────────────────────────┘
+                      │ ② "call tool X"
+                      ▼
+       Container Apps tool handler → runs C# in your code
+                      │ ③ returns tool result
+                      ▼
+       Foundry continues the run → ④ final reply
+```
+
+**Run lifecycle (4 steps):**
+
+| # | Who | What happens |
+|---|-----|--------------|
+| ① | Your API | `Runs.CreateRunAsync(thread, agent)` |
+| ② | Foundry | Sends a `requires_action` event with tool name + args |
+| ③ | Your API | Runs the C# tool, posts result back via `SubmitToolOutputsAsync` |
+| ④ | Foundry | Continues reasoning, returns the final assistant message |
+
+> 💡 Foundry stores **conversation data** (threads, runs, tool calls).
+> Your backend stores **business data** (orders, warehouses) in Cosmos DB / SQL.
 
 **Sketch:**
 

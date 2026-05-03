@@ -1,0 +1,295 @@
+<mxfile host="app.diagrams.net" agent="copilot" version="24.7.5">
+  <diagram name="Foundry Agent Service - Azure" id="azure-foundry-agent-service">
+    <mxGraphModel dx="1700" dy="1080" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1080" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="FoundryCommerceDemo — Azure Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#1B1B1B;" vertex="1" parent="1">
+          <mxGeometry x="60" y="30" width="900" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Production deployment with Microsoft Foundry Agent Service · 3 Resource Groups · VNet-injected · Managed Identity only" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=12;fontColor=#605E5C;" vertex="1" parent="1">
+          <mxGeometry x="60" y="64" width="900" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Subscription badge -->
+        <mxCell id="sub" value="&lt;b&gt;Subscription:&lt;/b&gt; sub-foundry-prod&#10;Region: West Europe · Tenant: contoso" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0078D4;strokeWidth=1.5;fontSize=11;align=left;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="32" width="270" height="44" as="geometry" />
+        </mxCell>
+
+        <!-- Azure boundary -->
+        <mxCell id="azure" value="☁  Microsoft Azure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#0078D4;strokeWidth=2;align=left;verticalAlign=top;spacingLeft=14;spacingTop=8;fontSize=13;fontStyle=1;fontColor=#0078D4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="1380" height="880" as="geometry" />
+        </mxCell>
+
+        <!-- ============ USER ============ -->
+        <mxCell id="user" value="Customer / Browser" style="shape=mxgraph.azure.user;html=1;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="170" width="60" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ============ EDGE / PERIMETER ============ -->
+        <mxCell id="edge" value="🌐 Edge / Perimeter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#D83B01;strokeWidth=1.5;dashed=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;fontSize=12;fontStyle=1;fontColor=#D83B01;" vertex="1" parent="1">
+          <mxGeometry x="220" y="150" width="200" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="afd" value="Front Door + WAF&#10;afd-foundry-prod" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.front_door;" vertex="1" parent="1">
+          <mxGeometry x="280" y="200" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="apim" value="API Management&#10;apim-foundry" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.api_management_services;" vertex="1" parent="1">
+          <mxGeometry x="280" y="270" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="entra" value="Microsoft Entra ID&#10;Token issuer" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.azure_active_directory;" vertex="1" parent="1">
+          <mxGeometry x="280" y="340" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ============ RG-APP ============ -->
+        <mxCell id="rgApp" value="📦  rg-foundrycommerce-app" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F7FF;strokeColor=#0078D4;strokeWidth=1.8;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=12;fontStyle=1;fontColor=#0078D4;" vertex="1" parent="1">
+          <mxGeometry x="450" y="150" width="400" height="800" as="geometry" />
+        </mxCell>
+
+        <!-- VNet -->
+        <mxCell id="vnet" value="VNet — vnet-foundry-prod (10.0.0.0/16)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0078D4;strokeWidth=1;dashed=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fontSize=10;fontStyle=1;fontColor=#0078D4;" vertex="1" parent="1">
+          <mxGeometry x="464" y="196" width="372" height="380" as="geometry" />
+        </mxCell>
+
+        <!-- Container Apps Environment -->
+        <mxCell id="cae" value="Container Apps Environment&#10;cae-foundry-prod · subnet 10.0.1.0/23" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F7FF;strokeColor=#0078D4;strokeWidth=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=6;fontSize=10;fontStyle=1;fontColor=#0078D4;" vertex="1" parent="1">
+          <mxGeometry x="478" y="246" width="344" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="acaApi" value="ca-foundry-api&#10;Public ingress · ASP.NET 10" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.container_instances;" vertex="1" parent="1">
+          <mxGeometry x="510" y="290" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="acaWorker" value="ca-foundry-worker&#10;Service Bus consumer" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.container_instances;" vertex="1" parent="1">
+          <mxGeometry x="700" y="290" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kedaNote" value="⚙ KEDA scaler · 0–N replicas · scales on HTTP &amp; queue depth" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E7F3FF;strokeColor=#0078D4;fontSize=10;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="490" y="380" width="320" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="sb" value="Service Bus Premium · VNet&#10;orders · retry · DLQ" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.service_bus;" vertex="1" parent="1">
+          <mxGeometry x="610" y="420" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Supporting services row -->
+        <mxCell id="acr" value="Container Registry&#10;Premium · PE" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.container_registries;" vertex="1" parent="1">
+          <mxGeometry x="495" y="620" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uami" value="Managed Identity&#10;id-foundry-app (UAMI)" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#D83B01;gradientColor=none;fillColor=#F25022;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.managed_identities;" vertex="1" parent="1">
+          <mxGeometry x="615" y="620" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kv" value="Key Vault&#10;RBAC · PE" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.key_vaults;" vertex="1" parent="1">
+          <mxGeometry x="755" y="620" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="appcfg" value="App Configuration&#10;Feature flags · settings" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.app_configuration;" vertex="1" parent="1">
+          <mxGeometry x="625" y="720" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zeroSecret" value="🔐 Zero-secret design&#10;UAMI holds RBAC: AcrPull · KV Reader · SB Sender·Receiver · Cosmos Contributor · AI Developer (on Foundry Project)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF4F0;strokeColor=#F25022;strokeWidth=1;fontSize=10;align=left;spacingLeft=12;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="478" y="820" width="344" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ============ RG-FOUNDRY ============ -->
+        <mxCell id="rgFoundry" value="🤖  rg-foundrycommerce-foundry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F0FF;strokeColor=#742774;strokeWidth=1.8;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=12;fontStyle=1;fontColor=#742774;" vertex="1" parent="1">
+          <mxGeometry x="880" y="150" width="280" height="800" as="geometry" />
+        </mxCell>
+
+        <mxCell id="hub" value="Foundry Project&#10;hub-foundry-prod / proj-commerce" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#742774;gradientColor=none;fillColor=#742774;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.machine_learning;" vertex="1" parent="1">
+          <mxGeometry x="980" y="210" width="40" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Agent Service container -->
+        <mxCell id="agentSvc" value="Foundry Agent Service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=6;fontSize=11;fontStyle=1;fontColor=#742774;" vertex="1" parent="1">
+          <mxGeometry x="894" y="290" width="252" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="agentLabel" value="PersistentAgents" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontStyle=1;fontColor=#742774;" vertex="1" parent="1">
+          <mxGeometry x="904" y="316" width="220" height="16" as="geometry" />
+        </mxCell>
+
+        <mxCell id="agentFraud" value="🛡 FraudDetectionAgent — CheckFraud, ScoreOrder" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F0FF;strokeColor=#742774;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="904" y="334" width="232" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="agentInv" value="📦 InventoryAgent — CheckStock, ReserveStock" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F0FF;strokeColor=#742774;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="904" y="362" width="232" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="agentFul" value="🚚 FulfillmentAgent — OptimizeFulfillment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F0FF;strokeColor=#742774;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="904" y="390" width="232" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="agentCust" value="💬 CustomerAgent — SendEmail" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F0FF;strokeColor=#742774;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="904" y="418" width="232" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="threads" value="📁 Threads · Runs · Messages — persisted by Foundry (per-tenant)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0E0FF;strokeColor=#742774;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="904" y="450" width="232" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="safety" value="🛡 Content Safety + Shields — prompt injection · jailbreak filters" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#742774;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="904" y="494" width="232" height="36" as="geometry" />
+        </mxCell>
+
+        <!-- Models -->
+        <mxCell id="modelLabel" value="Model Deployments" style="text;html=1;align=left;fontSize=11;fontStyle=1;fontColor=#742774;" vertex="1" parent="1">
+          <mxGeometry x="894" y="588" width="220" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" value="gpt-4o-mini · PAYG · primary chat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#742774;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="894" y="608" width="252" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="m2" value="gpt-4o · PTU · reserved fallback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#742774;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="894" y="640" width="252" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="m3" value="text-embedding-3-small · vector index for RAG" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#742774;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="894" y="672" width="252" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Auto-provisioned -->
+        <mxCell id="autoProv" value="Auto-provisioned with Hub:&#10;• Storage Account (workspace)&#10;• Key Vault (workspace secrets)&#10;• App Insights (Foundry tracing)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAF5FF;strokeColor=#742774;dashed=1;fontSize=10;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="894" y="710" width="252" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- ============ RG-DATA ============ -->
+        <mxCell id="rgData" value="💾  rg-foundrycommerce-data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F4F0FA;strokeColor=#5C2D91;strokeWidth=1.8;align=left;verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=12;fontStyle=1;fontColor=#5C2D91;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="150" width="220" height="800" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cosmos" value="Cosmos DB · NoSQL · multi-region&#10;orders, customers, audit-logs" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#1F4FBF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.cosmos_db;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="200" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sql" value="Azure SQL · Reporting + KPIs&#10;warehouses, stock_history" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.sql_database;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="320" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="storage" value="Storage Account · Blob&#10;labels, invoices, evidence" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.storage_accounts;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="440" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="redis" value="Azure Managed Redis&#10;stock:* idem:* session:*" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#A41E11;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.cache_redis;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="560" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="encNote" value="🔒 At-rest encryption — CMK from Key Vault · all endpoints private" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F4F0FA;strokeColor=#5C2D91;dashed=1;fontSize=10;align=left;spacingLeft=10;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="680" width="180" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- ============ OBSERVABILITY STRIP ============ -->
+        <mxCell id="obs" value="📊 Observability — receives signals from every resource above" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0078D4;dashed=1;fontSize=12;fontStyle=1;align=left;spacingLeft=12;spacingTop=6;fontColor=#0078D4;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="60" y="990" width="1340" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="ai" value="App Insights" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.application_insights;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1015" width="32" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="la" value="Log Analytics" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.log_analytics_workspaces;" vertex="1" parent="1">
+          <mxGeometry x="360" y="1015" width="32" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="mon" value="Azure Monitor" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.monitor;" vertex="1" parent="1">
+          <mxGeometry x="620" y="1015" width="32" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="ftrace" value="Foundry Tracing" style="sketch=0;outlineConnect=0;fontColor=#742774;gradientColor=none;fillColor=#742774;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.machine_learning;" vertex="1" parent="1">
+          <mxGeometry x="880" y="1015" width="32" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="defender" value="Defender for Cloud" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#0078D4;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=10;fontStyle=1;shape=mxgraph.azure.security_center;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="1015" width="32" height="32" as="geometry" />
+        </mxCell>
+
+        <!-- ============ FLOW ARROWS (numbered) ============ -->
+        <mxCell id="flow1" value="① HTTPS" style="endArrow=classic;html=1;rounded=0;strokeColor=#0078D4;strokeWidth=2.5;fontSize=10;fontStyle=1;fontColor=#0078D4;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="user" target="afd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow2" value="② token validated · enters VNet" style="endArrow=classic;html=1;rounded=0;strokeColor=#0078D4;strokeWidth=2.5;fontSize=10;fontStyle=1;fontColor=#0078D4;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="apim" target="acaApi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow3" value="③ start run (UAMI token)" style="endArrow=classic;html=1;rounded=0;strokeColor=#0078D4;strokeWidth=2.5;fontSize=10;fontStyle=1;fontColor=#0078D4;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="acaApi" target="agentSvc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow4" value="④ tool callback (requires_action)" style="endArrow=classic;html=1;rounded=0;strokeColor=#742774;strokeWidth=2.5;dashed=1;fontSize=10;fontStyle=1;fontColor=#742774;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="agentSvc" target="acaWorker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="flow5" value="⑤ tool reads data" style="endArrow=classic;html=1;rounded=0;strokeColor=#5C2D91;strokeWidth=2;fontSize=10;fontStyle=1;fontColor=#5C2D91;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="acaWorker" target="cosmos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Entra → UAMI binding (informational) -->
+        <mxCell id="bindEntra" value="issues token" style="endArrow=classic;html=1;rounded=0;strokeColor=#F25022;strokeWidth=1.5;dashed=1;fontSize=9;fontStyle=2;fontColor=#D83B01;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="entra" target="uami">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============ LEGEND ============ -->
+        <mxCell id="legend" value="🔄 Request flow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1B1B1B;strokeColor=#1B1B1B;fontSize=12;fontStyle=1;align=left;spacingLeft=12;spacingTop=8;fontColor=#FFFFFF;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="150" width="240" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="legendBox" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#605E5C;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="150" width="240" height="500" as="geometry" />
+        </mxCell>
+        <mxCell id="legend1" value="① User → Front Door — HTTPS · WAF · TLS termination" style="text;html=1;align=left;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="196" width="220" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="legend2" value="② APIM → Container App — token validation · enters VNet" style="text;html=1;align=left;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="232" width="220" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="legend3" value="③ App → Foundry (start run) — UAMI · creates Thread + Run" style="text;html=1;align=left;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="268" width="220" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="legend4" value="④ Foundry → Worker (tool call) — requires_action · run paused" style="text;html=1;align=left;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="304" width="220" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="legend5" value="⑤ Worker → Data tier — Cosmos / Redis / SQL · returns tool output" style="text;html=1;align=left;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="340" width="220" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="legendDiv1" value="Connection types" style="text;html=1;align=left;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="380" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legSync" value="Synchronous HTTPS" style="text;html=1;align=left;fontSize=10;spacingLeft=44;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="400" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legSyncL" style="endArrow=none;html=1;strokeColor=#0078D4;strokeWidth=2.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1442" y="410" as="sourcePoint"/>
+            <mxPoint x="1480" y="410" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legAsync" value="Async tool callback" style="text;html=1;align=left;fontSize=10;spacingLeft=44;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="424" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legAsyncL" style="endArrow=none;html=1;strokeColor=#742774;strokeWidth=2.5;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1442" y="434" as="sourcePoint"/>
+            <mxPoint x="1480" y="434" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legData" value="Data tier (UAMI)" style="text;html=1;align=left;fontSize=10;spacingLeft=44;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="448" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legDataL" style="endArrow=none;html=1;strokeColor=#5C2D91;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1442" y="458" as="sourcePoint"/>
+            <mxPoint x="1480" y="458" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="legendDiv2" value="Resource groups" style="text;html=1;align=left;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="480" width="220" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="rgKey1" value="" style="rounded=1;fillColor=#0078D4;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="504" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="rgKey1L" value="rg-foundrycommerce-app" style="text;html=1;align=left;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1462" y="502" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="rgKey2" value="" style="rounded=1;fillColor=#742774;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="524" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="rgKey2L" value="rg-foundrycommerce-foundry" style="text;html=1;align=left;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1462" y="522" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="rgKey3" value="" style="rounded=1;fillColor=#5C2D91;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="544" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="rgKey3L" value="rg-foundrycommerce-data" style="text;html=1;align=left;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1462" y="542" width="200" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="rgKey4" value="" style="rounded=1;fillColor=#D83B01;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="564" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="rgKey4L" value="Edge / Perimeter" style="text;html=1;align=left;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1462" y="562" width="200" height="18" as="geometry" />
+        </mxCell>
+
+        <mxCell id="vnetNote" value="VNet integration: all PaaS reached via Private Endpoint" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F7FF;strokeColor=#0078D4;fontSize=9;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="1442" y="590" width="216" height="40" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
