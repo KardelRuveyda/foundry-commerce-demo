@@ -1,0 +1,113 @@
+<mxfile host="app.diagrams.net" modified="2026-05-02T00:00:00.000Z" agent="Copilot" version="24.7.17" type="device">
+  <diagram id="dotnet-foundry-part3" name="Part 3 - Data Flow &amp; Information Barriers">
+    <mxGraphModel dx="2200" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- TITLE -->
+        <mxCell id="title" value="Part 3: Data Flow &amp; Information Barriers" style="text;html=1;align=center;fontSize=18;fontStyle=1;fontColor=#0B3D91;" vertex="1" parent="1">
+          <mxGeometry x="20" y="10" width="1360" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" value="Principle of least privilege — each agent sees only what it needs" style="text;html=1;align=center;fontSize=12;fontColor=#444;" vertex="1" parent="1">
+          <mxGeometry x="20" y="40" width="1360" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ============ COLUMN 1: FraudDetectionAgent ============ -->
+        <mxCell id="c1_ctn" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B85450;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="20" y="70" width="335" height="540" as="geometry"/>
+        </mxCell>
+        <mxCell id="c1_hdr" value="🛡  FraudDetectionAgent" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B85450;strokeColor=#B85450;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="20" y="70" width="335" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="c1_can" value="&lt;b style='color:#1B5E20'&gt;CAN ACCESS&lt;/b&gt;&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; PaymentCardCountry&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; IpCountry / IpAddress&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; ShippingCountry&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; DeviceFingerprint&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; CustomerEmail&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; OrderVelocity (24h count)&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Item list (for resale risk)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#82B366;fontSize=11;align=left;spacingLeft=10;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="34" y="116" width="307" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="c1_cant" value="&lt;b style='color:#B71C1C'&gt;CANNOT ACCESS&lt;/b&gt;&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Warehouse stock levels&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Shipping costs&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Other customers' data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#E57373;fontSize=11;align=left;spacingLeft=10;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="34" y="306" width="307" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="c1_why" value="&lt;b&gt;WHY&lt;/b&gt;&#10;&lt;i&gt;Fraud detection needs payment and location data. It has no reason to see inventory or logistics.&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=10;align=left;spacingLeft=10;spacingTop=6;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="34" y="426" width="307" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- ============ COLUMN 2: InventoryAgent ============ -->
+        <mxCell id="c2_ctn" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6C8EBF;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="365" y="70" width="335" height="540" as="geometry"/>
+        </mxCell>
+        <mxCell id="c2_hdr" value="📦  InventoryAgent" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#6C8EBF;strokeColor=#6C8EBF;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="365" y="70" width="335" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="c2_can" value="&lt;b style='color:#1B5E20'&gt;CAN ACCESS&lt;/b&gt;&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Order items (SKU, quantity)&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Shipping destination (country)&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Warehouse stock (IST, FRA, DXB)&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Shipping rates ($/kg matrix)&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Transit times (days)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#82B366;fontSize=11;align=left;spacingLeft=10;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="379" y="116" width="307" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="c2_cant" value="&lt;b style='color:#B71C1C'&gt;CANNOT ACCESS&lt;/b&gt;&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Payment card data&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; IP address / device info&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Fraud scores&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Customer email / phone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#E57373;fontSize=11;align=left;spacingLeft=10;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="379" y="306" width="307" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="c2_why" value="&lt;b&gt;WHY&lt;/b&gt;&#10;&lt;i&gt;Inventory needs to know WHAT to ship and WHERE. It doesn't need to know WHO is paying or HOW.&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=10;align=left;spacingLeft=10;spacingTop=6;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="379" y="426" width="307" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- ============ COLUMN 3: FulfillmentAgent ============ -->
+        <mxCell id="c3_ctn" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9673A6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="710" y="70" width="335" height="540" as="geometry"/>
+        </mxCell>
+        <mxCell id="c3_hdr" value="🚚  FulfillmentAgent" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#9673A6;strokeColor=#9673A6;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="710" y="70" width="335" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="c3_can" value="&lt;b style='color:#1B5E20'&gt;CAN ACCESS&lt;/b&gt;&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Everything InventoryAgent returns&#10;     (via .AsAIFunction())&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Order status (fraud cleared?)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#82B366;fontSize=11;align=left;spacingLeft=10;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="724" y="116" width="307" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="c3_cant" value="&lt;b style='color:#B71C1C'&gt;CANNOT ACCESS&lt;/b&gt;&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Raw fraud analysis data&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Customer contact info&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Payment details" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#E57373;fontSize=11;align=left;spacingLeft=10;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="724" y="306" width="307" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="c3_why" value="&lt;b&gt;WHY&lt;/b&gt;&#10;&lt;i&gt;Fulfillment orchestrates inventory operations. It delegates, not computes. Agent-as-tool = delegated access.&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=10;align=left;spacingLeft=10;spacingTop=6;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="724" y="426" width="307" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- ============ COLUMN 4: CustomerCommsAgent ============ -->
+        <mxCell id="c4_ctn" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82B366;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1055" y="70" width="335" height="540" as="geometry"/>
+        </mxCell>
+        <mxCell id="c4_hdr" value="✉  CustomerCommsAgent" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#82B366;strokeColor=#82B366;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1055" y="70" width="335" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="c4_can" value="&lt;b style='color:#1B5E20'&gt;CAN ACCESS&lt;/b&gt;&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Customer name &amp; email&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Customer tier (Standard/Gold/Platinum)&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Order items &amp; total amount&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Order status&#10;&lt;span style='color:#27AE60'&gt;✅&lt;/span&gt; Fulfillment plan (ETAs)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#82B366;fontSize=11;align=left;spacingLeft=10;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="1069" y="116" width="307" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="c4_cant" value="&lt;b style='color:#B71C1C'&gt;CANNOT ACCESS&lt;/b&gt;&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Fraud scores &amp; risk points&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Geo-mismatch details&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Velocity flags&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Warehouse IDs (WH-IST, WH-FRA)&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; Shipping costs &amp; margins&#10;&lt;span style='color:#E74C3C'&gt;❌&lt;/span&gt; IP address / device fingerprint" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#E57373;fontSize=11;align=left;spacingLeft=10;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="1069" y="306" width="307" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="c4_why" value="&lt;b&gt;WHY&lt;/b&gt;&#10;&lt;i&gt;Customer comms needs to write emails. It should know WHAT happened (approved/blocked) but never WHY in technical terms.&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=10;align=left;spacingLeft=10;spacingTop=6;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="1069" y="426" width="307" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- ============ BOTTOM: How Barriers Are Enforced ============ -->
+        <mxCell id="enf_ctn" value="How Barriers Are Enforced" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#424242;verticalAlign=top;align=left;spacingLeft=14;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="20" y="625" width="1370" height="100" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="enf_code" value="&lt;b&gt;C#  ▸  Code-Level Barrier&lt;/b&gt;&#10;GetOrderForCommunication() returns ONLY customer-safe fields.&#10;Internal fields like IpCountry, DeviceFingerprint, and PaymentCardCountry are never returned.&#10;&lt;b&gt;→ Agent literally cannot see the data&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontSize=10;align=left;spacingLeft=12;spacingTop=6;fontColor=#0B3D91;" vertex="1" parent="1">
+          <mxGeometry x="40" y="650" width="600" height="68" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="plus" value="+" style="text;html=1;align=center;fontSize=28;fontStyle=1;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="654" y="664" width="40" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="enf_inst" value="&lt;b&gt;📜  Instruction-Level Barrier&lt;/b&gt;&#10;AgentDefinitions.cs contains explicit rules: 'NEVER reveal internal fraud scores',&#10;'NEVER mention warehouse IDs', 'Say additional verification, not fraud review'.&#10;&lt;b&gt;→ Even if data leaks, agent is told not to share&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;fontSize=10;align=left;spacingLeft=12;spacingTop=6;fontColor=#4A148C;" vertex="1" parent="1">
+          <mxGeometry x="700" y="650" width="600" height="68" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="enf_caption" value="Double protection: code prevents access + instructions prevent disclosure" style="text;html=1;align=center;fontSize=10;fontStyle=2;fontColor=#424242;" vertex="1" parent="1">
+          <mxGeometry x="40" y="722" width="1260" height="16" as="geometry"/>
+        </mxCell>
+
+        <!-- ============ VERY BOTTOM: Key Insight ============ -->
+        <mxCell id="insight" value="&lt;b style='color:#FFD54F'&gt;KEY INSIGHT&lt;/b&gt;     The model REASONS (decides which tool to call)  •  Your C# code COMPUTES (produces the actual numbers)  •  Hallucination is possible in reasoning, NEVER in computation  •  Risk score 190/200 = your C# math, not the model's guess" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=#1A1A2E;fontColor=#FFFFFF;fontSize=11;fontStyle=0;align=center;" vertex="1" parent="1">
+          <mxGeometry x="20" y="745" width="1370" height="44" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

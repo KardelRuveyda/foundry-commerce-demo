@@ -1,0 +1,144 @@
+<mxfile host="app.diagrams.net" modified="2026-05-02T00:00:00.000Z" agent="Copilot" version="24.7.17" type="device">
+  <diagram id="dotnet-foundry-summary" name="Summary - Foundry E-Commerce Multi-Agent">
+    <mxGraphModel dx="2400" dy="1500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ============ TOP BAR (blue gradient) ============ -->
+        <mxCell id="topbar" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0078D4;strokeColor=#005A9E;gradientColor=#005A9E;gradientDirection=east;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="1600" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="tb_foundry_ic" value="" style="shape=mxgraph.azure2.ai_machine_learning.azure_machine_learning;html=1;fillColor=#FFFFFF;strokeColor=#FFFFFF;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="20" y="14" width="32" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="tb_foundry_l" value="Microsoft Foundry" style="text;html=1;align=left;fontSize=16;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="60" y="18" width="220" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tb_center" value="gpt-4.1-mini    •    Foundry Agent Service    •    Entra ID" style="text;html=1;align=center;fontSize=14;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="450" y="18" width="700" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="tb_connector" value="Same tools, same code" style="text;html=1;align=center;fontSize=10;fontStyle=2;fontColor=#FFE082;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="34" width="200" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="tb_conn_arrow" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#FFE082;strokeWidth=2;dashed=1;dashPattern=4 3;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1170" y="30" as="sourcePoint"/>
+            <mxPoint x="1370" y="30" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="tb_ollama_ic" value="" style="shape=mxgraph.networking.server;html=1;fillColor=#FFFFFF;strokeColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="14" width="28" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="tb_ollama_l" value="Local Mode (PCI-DSS)" style="text;html=1;align=left;fontSize=16;fontStyle=1;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="1416" y="18" width="180" height="24" as="geometry"/>
+        </mxCell>
+
+        <!-- ============ TITLE ============ -->
+        <mxCell id="title" value="Microsoft Foundry — Enterprise E-Commerce Multi-Agent Architecture" style="text;html=1;align=center;fontSize=22;fontStyle=1;fontColor=#0B3D91;" vertex="1" parent="1">
+          <mxGeometry x="20" y="78" width="1560" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- ============ MAIN AREA ============ -->
+
+        <!-- INPUT: Order stack -->
+        <mxCell id="in_ctn" value="Incoming Orders" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#9E9E9E;strokeWidth=1.5;fontSize=12;fontStyle=1;fontColor=#424242;verticalAlign=top;align=center;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="270" width="200" height="280" as="geometry"/>
+        </mxCell>
+        <mxCell id="in_c1" value="ORD-50001  Jane  ✅" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82B366;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#1B5E20;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="306" width="160" height="56" as="geometry"/>
+        </mxCell>
+        <mxCell id="in_c2" value="ORD-50002  John  ⛔" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B85450;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#B71C1C;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="376" width="160" height="56" as="geometry"/>
+        </mxCell>
+        <mxCell id="in_c3" value="ORD-50003  Maria  ✅" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#82B366;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#1B5E20;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="446" width="160" height="56" as="geometry"/>
+        </mxCell>
+
+        <!-- AGENT 1: Fraud Detection -->
+        <mxCell id="a1" value="🛡  Fraud Detection&#10;&lt;span style='font-size:11px;font-weight:400'&gt;3 C# tools&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;fontSize=16;fontStyle=1;fontColor=#7F1D1D;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="310" y="350" width="200" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- DECISION DIAMOND -->
+        <mxCell id="dec" value="Risk &gt; 60?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#7F6000;" vertex="1" parent="1">
+          <mxGeometry x="570" y="370" width="140" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- AGENT 2: Fulfillment (purple wrapper) -->
+        <mxCell id="a2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="770" y="290" width="320" height="240" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2_t" value="🚚  Fulfillment" style="text;html=1;align=center;fontSize=16;fontStyle=1;fontColor=#4A148C;" vertex="1" parent="1">
+          <mxGeometry x="770" y="300" width="320" height="24" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2_s" value="Uses InventoryAgent as tool" style="text;html=1;align=center;fontSize=11;fontStyle=2;fontColor=#4A148C;" vertex="1" parent="1">
+          <mxGeometry x="770" y="324" width="320" height="18" as="geometry"/>
+        </mxCell>
+
+        <!-- AGENT 2b: Inventory (inside Fulfillment) -->
+        <mxCell id="a2b" value="📦  Inventory&#10;&lt;span style='font-size:11px;font-weight:400'&gt;3 warehouses: IST | FRA | DXB&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#0B3D91;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="360" width="260" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2b_lbl" value="agent-as-tool" style="text;html=1;align=center;fontSize=10;fontStyle=2;fontColor=#6A1B9A;" vertex="1" parent="1">
+          <mxGeometry x="800" y="492" width="260" height="16" as="geometry"/>
+        </mxCell>
+        <!-- Curved dashed arrow from Fulfillment back into Inventory -->
+        <mxCell id="a2_loop" style="endArrow=block;html=1;curved=1;rounded=0;strokeColor=#9673A6;strokeWidth=2;dashed=1;dashPattern=6 4;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="930" y="490" as="sourcePoint"/>
+            <mxPoint x="930" y="442" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="1060" y="490"/>
+              <mxPoint x="1060" y="430"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- AGENT 3: Customer Comms -->
+        <mxCell id="a3" value="✉  Customer Comms&#10;&lt;span style='font-size:11px;font-weight:400'&gt;Tier-aware tone&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=16;fontStyle=1;fontColor=#1B5E20;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="350" width="220" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- OUTPUT: Confirmation -->
+        <mxCell id="out_ok" value="📧  Confirmation email + ETA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#1B5E20;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="370" width="160" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- OUTPUT: Hold email (YES path) -->
+        <mxCell id="out_hold" value="📧  Hold email" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#7F6000;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="570" y="600" width="140" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ============ ARROWS ============ -->
+        <mxCell id="e1" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="in_ctn" target="a1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="a1" target="dec">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3_no" value="NO" style="endArrow=block;html=1;rounded=0;strokeColor=#2E7D32;strokeWidth=3;fontSize=12;fontStyle=1;fontColor=#1B5E20;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dec" target="a2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4_yes" value="YES" style="endArrow=block;html=1;rounded=0;strokeColor=#B71C1C;strokeWidth=3;fontSize=12;fontStyle=1;fontColor=#B71C1C;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dec" target="out_hold">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="a2" target="a3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=block;html=1;rounded=0;strokeColor=#333333;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="a3" target="out_ok">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ============ BOTTOM BAR (dark) ============ -->
+        <mxCell id="bot" value="C# Business Logic:  FraudTools.cs  |  InventoryTools.cs  |  CustomerTools.cs&#10;Model REASONS  →  Your code COMPUTES  →  Zero hallucination in business logic" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=#1A1A2E;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="0" y="820" width="1600" height="80" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

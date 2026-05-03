@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="topG" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#0078D4"/>
+      <stop offset="100%" stop-color="#005A9E"/>
+    </linearGradient>
+    <marker id="arrK" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2E7D32"/></marker>
+    <marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B71C1C"/></marker>
+    <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9673A6"/></marker>
+    <style>
+      .ttl{font-size:22px;font-weight:700;fill:#0B3D91}
+      .tb{font-size:16px;font-weight:700;fill:#FFFFFF}
+      .tbc{font-size:14px;font-weight:700;fill:#FFFFFF}
+      .tbConn{font-size:10px;font-style:italic;fill:#FFE082}
+      .agentT{font-size:16px;font-weight:700}
+      .agentS{font-size:11px;fill:#212121}
+      .card{font-size:12px;font-weight:700}
+      .arrL{font-size:12px;font-weight:700}
+      .out{font-size:12px;font-weight:700}
+      .botL{font-size:14px;font-weight:700;fill:#FFFFFF}
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#FFFFFF"/>
+
+  <!-- ============ TOP BAR ============ -->
+  <rect x="0" y="0" width="1600" height="60" fill="url(#topG)"/>
+  <!-- Foundry icon (stylized) -->
+  <g transform="translate(20,14)">
+    <rect x="0" y="0" width="32" height="32" rx="5" fill="#FFFFFF" opacity="0.15"/>
+    <circle cx="16" cy="16" r="8" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+    <circle cx="16" cy="16" r="2.5" fill="#FFFFFF"/>
+    <line x1="16" y1="3" x2="16" y2="9" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="16" y1="23" x2="16" y2="29" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="3" y1="16" x2="9" y2="16" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="23" y1="16" x2="29" y2="16" stroke="#FFFFFF" stroke-width="2"/>
+  </g>
+  <text x="60" y="36" class="tb">Microsoft Foundry</text>
+
+  <text x="800" y="36" text-anchor="middle" class="tbc">gpt-4.1-mini    •    Foundry Agent Service    •    Entra ID</text>
+
+  <!-- Connector dashed line + label between center and right -->
+  <line x1="1170" y1="30" x2="1370" y2="30" stroke="#FFE082" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="1270" y="22" text-anchor="middle" class="tbConn">Same tools, same code</text>
+
+  <!-- Ollama icon (server) -->
+  <g transform="translate(1380,14)">
+    <rect x="0" y="2" width="28" height="8" rx="1" fill="#FFFFFF"/>
+    <rect x="0" y="13" width="28" height="8" rx="1" fill="#FFFFFF"/>
+    <rect x="0" y="24" width="28" height="6" rx="1" fill="#FFFFFF"/>
+    <circle cx="4" cy="6" r="1.2" fill="#4CAF50"/>
+    <circle cx="4" cy="17" r="1.2" fill="#4CAF50"/>
+  </g>
+  <text x="1416" y="36" class="tb">Local Mode (PCI-DSS)</text>
+
+  <!-- ============ TITLE ============ -->
+  <text x="800" y="106" text-anchor="middle" class="ttl">Microsoft Foundry — Enterprise E-Commerce Multi-Agent Architecture</text>
+
+  <!-- ============ INPUT: Order stack ============ -->
+  <rect x="40" y="270" width="200" height="280" rx="8" fill="#F5F5F5" stroke="#9E9E9E" stroke-width="1.5"/>
+  <text x="140" y="294" text-anchor="middle" font-size="12" font-weight="700" fill="#424242">Incoming Orders</text>
+
+  <rect x="60" y="306" width="160" height="56" rx="6" fill="#FFFFFF" stroke="#82B366" stroke-width="2"/>
+  <text x="70" y="340" class="card" fill="#1B5E20">ORD-50001  Jane  ✅</text>
+
+  <rect x="60" y="376" width="160" height="56" rx="6" fill="#FFFFFF" stroke="#B85450" stroke-width="2"/>
+  <text x="70" y="410" class="card" fill="#B71C1C">ORD-50002  John  ⛔</text>
+
+  <rect x="60" y="446" width="160" height="56" rx="6" fill="#FFFFFF" stroke="#82B366" stroke-width="2"/>
+  <text x="70" y="480" class="card" fill="#1B5E20">ORD-50003  Maria  ✅</text>
+
+  <!-- ============ AGENT 1: Fraud Detection ============ -->
+  <rect x="310" y="350" width="200" height="120" rx="10" fill="#F8CECC" stroke="#B85450" stroke-width="2"/>
+  <text x="410" y="395" text-anchor="middle" class="agentT" fill="#7F1D1D">🛡  Fraud Detection</text>
+  <text x="410" y="430" text-anchor="middle" class="agentS" fill="#7F1D1D">3 C# tools</text>
+
+  <!-- ============ DECISION DIAMOND ============ -->
+  <polygon points="640,370 710,410 640,450 570,410" fill="#FFF2CC" stroke="#D6B656" stroke-width="2"/>
+  <text x="640" y="415" text-anchor="middle" font-size="14" font-weight="700" fill="#7F6000">Risk &gt; 60?</text>
+
+  <!-- ============ AGENT 2: Fulfillment ============ -->
+  <rect x="770" y="290" width="320" height="240" rx="10" fill="#E1D5E7" stroke="#9673A6" stroke-width="2"/>
+  <text x="930" y="318" text-anchor="middle" class="agentT" fill="#4A148C">🚚  Fulfillment</text>
+  <text x="930" y="338" text-anchor="middle" font-size="11" font-style="italic" fill="#4A148C">Uses InventoryAgent as tool</text>
+
+  <!-- AGENT 2b: Inventory inside -->
+  <rect x="800" y="360" width="260" height="80" rx="8" fill="#DAE8FC" stroke="#6C8EBF" stroke-width="2"/>
+  <text x="930" y="392" text-anchor="middle" font-size="14" font-weight="700" fill="#0B3D91">📦  Inventory</text>
+  <text x="930" y="416" text-anchor="middle" font-size="11" fill="#0B3D91">3 warehouses: IST | FRA | DXB</text>
+
+  <!-- agent-as-tool curved dashed arrow back into Inventory -->
+  <path d="M 930 490 C 1060 490 1060 430 1010 430" fill="none" stroke="#9673A6" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrP)"/>
+  <text x="930" y="510" text-anchor="middle" font-size="10" font-style="italic" fill="#6A1B9A">agent-as-tool</text>
+
+  <!-- ============ AGENT 3: Customer Comms ============ -->
+  <rect x="1150" y="350" width="220" height="120" rx="10" fill="#D5E8D4" stroke="#82B366" stroke-width="2"/>
+  <text x="1260" y="395" text-anchor="middle" class="agentT" fill="#1B5E20">✉  Customer Comms</text>
+  <text x="1260" y="430" text-anchor="middle" class="agentS" fill="#1B5E20">Tier-aware tone</text>
+
+  <!-- ============ OUTPUT: Confirmation ============ -->
+  <rect x="1420" y="370" width="160" height="80" rx="8" fill="#D5E8D4" stroke="#82B366" stroke-width="2"/>
+  <text x="1500" y="404" text-anchor="middle" class="out" fill="#1B5E20">📧  Confirmation</text>
+  <text x="1500" y="424" text-anchor="middle" class="out" fill="#1B5E20">email + ETA</text>
+
+  <!-- ============ OUTPUT: Hold email (YES path) ============ -->
+  <rect x="570" y="600" width="140" height="60" rx="8" fill="#FFF2CC" stroke="#D6B656" stroke-width="2"/>
+  <text x="640" y="636" text-anchor="middle" class="out" fill="#7F6000">📧  Hold email</text>
+
+  <!-- ============ ARROWS ============ -->
+  <line x1="240" y1="410" x2="310" y2="410" stroke="#333" stroke-width="3" marker-end="url(#arrK)"/>
+  <line x1="510" y1="410" x2="570" y2="410" stroke="#333" stroke-width="3" marker-end="url(#arrK)"/>
+
+  <!-- NO -->
+  <line x1="710" y1="410" x2="770" y2="410" stroke="#2E7D32" stroke-width="3" marker-end="url(#arrG)"/>
+  <rect x="722" y="386" width="40" height="20" rx="3" fill="#FFFFFF" stroke="#2E7D32"/>
+  <text x="742" y="400" text-anchor="middle" class="arrL" fill="#1B5E20">NO</text>
+
+  <!-- YES (down) -->
+  <line x1="640" y1="450" x2="640" y2="600" stroke="#B71C1C" stroke-width="3" marker-end="url(#arrR)"/>
+  <rect x="618" y="510" width="44" height="20" rx="3" fill="#FFFFFF" stroke="#B71C1C"/>
+  <text x="640" y="524" text-anchor="middle" class="arrL" fill="#B71C1C">YES</text>
+
+  <!-- Fulfillment → CustomerComms -->
+  <line x1="1090" y1="410" x2="1150" y2="410" stroke="#333" stroke-width="3" marker-end="url(#arrK)"/>
+  <!-- CustomerComms → output -->
+  <line x1="1370" y1="410" x2="1420" y2="410" stroke="#333" stroke-width="3" marker-end="url(#arrK)"/>
+
+  <!-- ============ BOTTOM BAR (dark) ============ -->
+  <rect x="0" y="820" width="1600" height="80" fill="#1A1A2E"/>
+  <text x="800" y="850" text-anchor="middle" class="botL">C# Business Logic:  FraudTools.cs  |  InventoryTools.cs  |  CustomerTools.cs</text>
+  <text x="800" y="876" text-anchor="middle" class="botL">Model REASONS  →  Your code COMPUTES  →  Zero hallucination in business logic</text>
+
+</svg>

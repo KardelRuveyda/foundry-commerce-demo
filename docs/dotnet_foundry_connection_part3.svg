@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <style>
+      .ttl{font-size:18px;font-weight:700;fill:#0B3D91}
+      .sub{font-size:12px;fill:#444}
+      .hdr{font-size:14px;font-weight:700;fill:#FFFFFF}
+      .secT{font-size:12px;font-weight:700}
+      .item{font-size:11px;fill:#212121}
+      .can{fill:#27AE60;font-weight:700}
+      .cant{fill:#E74C3C;font-weight:700}
+      .why{font-size:10px;font-style:italic;fill:#424242}
+      .whyT{font-size:11px;font-weight:700;fill:#424242}
+      .enfT{font-size:11px;font-weight:700}
+      .enfTxt{font-size:10px}
+    </style>
+  </defs>
+
+  <rect width="1400" height="800" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="700" y="30" text-anchor="middle" class="ttl">Part 3: Data Flow &amp; Information Barriers</text>
+  <text x="700" y="52" text-anchor="middle" class="sub">Principle of least privilege — each agent sees only what it needs</text>
+
+  <!-- ============ COLUMN 1: FraudDetectionAgent ============ -->
+  <rect x="20" y="70" width="335" height="540" rx="8" ry="8" fill="#FFFFFF" stroke="#B85450" stroke-width="2"/>
+  <rect x="20" y="70" width="335" height="34" fill="#B85450"/>
+  <text x="187" y="92" text-anchor="middle" class="hdr">🛡  FraudDetectionAgent</text>
+
+  <rect x="34" y="116" width="307" height="180" rx="6" fill="#F1F8E9" stroke="#82B366"/>
+  <text x="44" y="134" class="secT" fill="#1B5E20">CAN ACCESS</text>
+  <text x="44" y="156" class="item"><tspan class="can">✓</tspan> PaymentCardCountry</text>
+  <text x="44" y="174" class="item"><tspan class="can">✓</tspan> IpCountry / IpAddress</text>
+  <text x="44" y="192" class="item"><tspan class="can">✓</tspan> ShippingCountry</text>
+  <text x="44" y="210" class="item"><tspan class="can">✓</tspan> DeviceFingerprint</text>
+  <text x="44" y="228" class="item"><tspan class="can">✓</tspan> CustomerEmail</text>
+  <text x="44" y="246" class="item"><tspan class="can">✓</tspan> OrderVelocity (24h count)</text>
+  <text x="44" y="264" class="item"><tspan class="can">✓</tspan> Item list (for resale risk)</text>
+
+  <rect x="34" y="306" width="307" height="110" rx="6" fill="#FFEBEE" stroke="#E57373"/>
+  <text x="44" y="324" class="secT" fill="#B71C1C">CANNOT ACCESS</text>
+  <text x="44" y="346" class="item"><tspan class="cant">✗</tspan> Warehouse stock levels</text>
+  <text x="44" y="364" class="item"><tspan class="cant">✗</tspan> Shipping costs</text>
+  <text x="44" y="382" class="item"><tspan class="cant">✗</tspan> Other customers' data</text>
+
+  <rect x="34" y="426" width="307" height="170" rx="6" fill="#F5F5F5" stroke="#9E9E9E"/>
+  <text x="44" y="444" class="whyT">WHY</text>
+  <text x="44" y="464" class="why">Fraud detection needs payment</text>
+  <text x="44" y="480" class="why">and location data. It has no</text>
+  <text x="44" y="496" class="why">reason to see inventory or</text>
+  <text x="44" y="512" class="why">logistics.</text>
+
+  <!-- ============ COLUMN 2: InventoryAgent ============ -->
+  <rect x="365" y="70" width="335" height="540" rx="8" ry="8" fill="#FFFFFF" stroke="#6C8EBF" stroke-width="2"/>
+  <rect x="365" y="70" width="335" height="34" fill="#6C8EBF"/>
+  <text x="532" y="92" text-anchor="middle" class="hdr">📦  InventoryAgent</text>
+
+  <rect x="379" y="116" width="307" height="180" rx="6" fill="#F1F8E9" stroke="#82B366"/>
+  <text x="389" y="134" class="secT" fill="#1B5E20">CAN ACCESS</text>
+  <text x="389" y="156" class="item"><tspan class="can">✓</tspan> Order items (SKU, quantity)</text>
+  <text x="389" y="174" class="item"><tspan class="can">✓</tspan> Shipping destination (country)</text>
+  <text x="389" y="192" class="item"><tspan class="can">✓</tspan> Warehouse stock (IST, FRA, DXB)</text>
+  <text x="389" y="210" class="item"><tspan class="can">✓</tspan> Shipping rates ($/kg matrix)</text>
+  <text x="389" y="228" class="item"><tspan class="can">✓</tspan> Transit times (days)</text>
+
+  <rect x="379" y="306" width="307" height="110" rx="6" fill="#FFEBEE" stroke="#E57373"/>
+  <text x="389" y="324" class="secT" fill="#B71C1C">CANNOT ACCESS</text>
+  <text x="389" y="346" class="item"><tspan class="cant">✗</tspan> Payment card data</text>
+  <text x="389" y="364" class="item"><tspan class="cant">✗</tspan> IP address / device info</text>
+  <text x="389" y="382" class="item"><tspan class="cant">✗</tspan> Fraud scores</text>
+  <text x="389" y="400" class="item"><tspan class="cant">✗</tspan> Customer email / phone</text>
+
+  <rect x="379" y="426" width="307" height="170" rx="6" fill="#F5F5F5" stroke="#9E9E9E"/>
+  <text x="389" y="444" class="whyT">WHY</text>
+  <text x="389" y="464" class="why">Inventory needs to know WHAT</text>
+  <text x="389" y="480" class="why">to ship and WHERE. It doesn't</text>
+  <text x="389" y="496" class="why">need to know WHO is paying</text>
+  <text x="389" y="512" class="why">or HOW.</text>
+
+  <!-- ============ COLUMN 3: FulfillmentAgent ============ -->
+  <rect x="710" y="70" width="335" height="540" rx="8" ry="8" fill="#FFFFFF" stroke="#9673A6" stroke-width="2"/>
+  <rect x="710" y="70" width="335" height="34" fill="#9673A6"/>
+  <text x="877" y="92" text-anchor="middle" class="hdr">🚚  FulfillmentAgent</text>
+
+  <rect x="724" y="116" width="307" height="180" rx="6" fill="#F1F8E9" stroke="#82B366"/>
+  <text x="734" y="134" class="secT" fill="#1B5E20">CAN ACCESS</text>
+  <text x="734" y="156" class="item"><tspan class="can">✓</tspan> Everything InventoryAgent returns</text>
+  <text x="746" y="174" class="item">(via .AsAIFunction())</text>
+  <text x="734" y="196" class="item"><tspan class="can">✓</tspan> Order status (fraud cleared?)</text>
+
+  <rect x="724" y="306" width="307" height="110" rx="6" fill="#FFEBEE" stroke="#E57373"/>
+  <text x="734" y="324" class="secT" fill="#B71C1C">CANNOT ACCESS</text>
+  <text x="734" y="346" class="item"><tspan class="cant">✗</tspan> Raw fraud analysis data</text>
+  <text x="734" y="364" class="item"><tspan class="cant">✗</tspan> Customer contact info</text>
+  <text x="734" y="382" class="item"><tspan class="cant">✗</tspan> Payment details</text>
+
+  <rect x="724" y="426" width="307" height="170" rx="6" fill="#F5F5F5" stroke="#9E9E9E"/>
+  <text x="734" y="444" class="whyT">WHY</text>
+  <text x="734" y="464" class="why">Fulfillment orchestrates</text>
+  <text x="734" y="480" class="why">inventory operations. It</text>
+  <text x="734" y="496" class="why">delegates, not computes.</text>
+  <text x="734" y="512" class="why">Agent-as-tool = delegated access.</text>
+
+  <!-- ============ COLUMN 4: CustomerCommsAgent ============ -->
+  <rect x="1055" y="70" width="335" height="540" rx="8" ry="8" fill="#FFFFFF" stroke="#82B366" stroke-width="2"/>
+  <rect x="1055" y="70" width="335" height="34" fill="#82B366"/>
+  <text x="1222" y="92" text-anchor="middle" class="hdr">✉  CustomerCommsAgent</text>
+
+  <rect x="1069" y="116" width="307" height="180" rx="6" fill="#F1F8E9" stroke="#82B366"/>
+  <text x="1079" y="134" class="secT" fill="#1B5E20">CAN ACCESS</text>
+  <text x="1079" y="156" class="item"><tspan class="can">✓</tspan> Customer name &amp; email</text>
+  <text x="1079" y="174" class="item"><tspan class="can">✓</tspan> Customer tier (Std/Gold/Platinum)</text>
+  <text x="1079" y="192" class="item"><tspan class="can">✓</tspan> Order items &amp; total amount</text>
+  <text x="1079" y="210" class="item"><tspan class="can">✓</tspan> Order status</text>
+  <text x="1079" y="228" class="item"><tspan class="can">✓</tspan> Fulfillment plan (ETAs)</text>
+
+  <rect x="1069" y="306" width="307" height="110" rx="6" fill="#FFEBEE" stroke="#E57373"/>
+  <text x="1079" y="320" class="secT" fill="#B71C1C">CANNOT ACCESS</text>
+  <text x="1079" y="336" class="item" font-size="10"><tspan class="cant">✗</tspan> Fraud scores &amp; risk points</text>
+  <text x="1079" y="350" class="item" font-size="10"><tspan class="cant">✗</tspan> Geo-mismatch details</text>
+  <text x="1079" y="364" class="item" font-size="10"><tspan class="cant">✗</tspan> Velocity flags</text>
+  <text x="1079" y="378" class="item" font-size="10"><tspan class="cant">✗</tspan> Warehouse IDs (WH-IST, WH-FRA)</text>
+  <text x="1079" y="392" class="item" font-size="10"><tspan class="cant">✗</tspan> Shipping costs &amp; margins</text>
+  <text x="1079" y="406" class="item" font-size="10"><tspan class="cant">✗</tspan> IP address / device fingerprint</text>
+
+  <rect x="1069" y="426" width="307" height="170" rx="6" fill="#F5F5F5" stroke="#9E9E9E"/>
+  <text x="1079" y="444" class="whyT">WHY</text>
+  <text x="1079" y="464" class="why">Customer comms needs to write</text>
+  <text x="1079" y="480" class="why">emails. It should know WHAT</text>
+  <text x="1079" y="496" class="why">happened (approved/blocked)</text>
+  <text x="1079" y="512" class="why">but never WHY in technical terms.</text>
+
+  <!-- ============ BOTTOM: How Barriers Are Enforced ============ -->
+  <rect x="20" y="625" width="1370" height="100" rx="8" ry="8" fill="#F5F5F5" stroke="#9E9E9E" stroke-width="1.5"/>
+  <text x="34" y="645" font-size="12" font-weight="700" fill="#424242">How Barriers Are Enforced</text>
+
+  <!-- Layer 1: Code-Level Barrier -->
+  <rect x="40" y="650" width="600" height="68" rx="6" fill="#DAE8FC" stroke="#6C8EBF" stroke-width="2"/>
+  <text x="52" y="668" class="enfT" fill="#0B3D91">C#  ▸  Code-Level Barrier</text>
+  <text x="52" y="684" class="enfTxt" fill="#0B3D91">GetOrderForCommunication() returns ONLY customer-safe fields. Internal fields</text>
+  <text x="52" y="698" class="enfTxt" fill="#0B3D91">like IpCountry, DeviceFingerprint, PaymentCardCountry are never returned.</text>
+  <text x="52" y="713" class="enfT" fill="#0B3D91">→ Agent literally cannot see the data</text>
+
+  <!-- Plus -->
+  <text x="670" y="694" text-anchor="middle" font-size="28" font-weight="700" fill="#424242">+</text>
+
+  <!-- Layer 2: Instruction-Level Barrier -->
+  <rect x="700" y="650" width="600" height="68" rx="6" fill="#E1D5E7" stroke="#9673A6" stroke-width="2"/>
+  <text x="712" y="668" class="enfT" fill="#4A148C">📜  Instruction-Level Barrier</text>
+  <text x="712" y="684" class="enfTxt" fill="#4A148C">AgentDefinitions.cs contains explicit rules: 'NEVER reveal internal fraud scores',</text>
+  <text x="712" y="698" class="enfTxt" fill="#4A148C">'NEVER mention warehouse IDs', 'Say additional verification, not fraud review'.</text>
+  <text x="712" y="713" class="enfT" fill="#4A148C">→ Even if data leaks, agent is told not to share</text>
+
+  <!-- ============ VERY BOTTOM: Key Insight ============ -->
+  <rect x="20" y="745" width="1370" height="44" rx="6" fill="#1A1A2E"/>
+  <text x="34" y="763" font-size="11" font-weight="700" fill="#FFD54F">KEY INSIGHT</text>
+  <text x="140" y="763" font-size="11" fill="#FFFFFF">The model REASONS (decides which tool to call)  •  Your C# code COMPUTES (produces the actual numbers)</text>
+  <text x="140" y="780" font-size="11" fill="#FFFFFF">Hallucination is possible in reasoning, NEVER in computation  •  Risk score 190/200 = your C# math, not the model's guess</text>
+
+</svg>

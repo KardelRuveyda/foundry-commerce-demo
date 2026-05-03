@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrK" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2E7D32"/></marker>
+    <marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B71C1C"/></marker>
+    <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#9673A6"/></marker>
+    <marker id="arrY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#D6B656"/></marker>
+    <marker id="arrGrn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#82B366"/></marker>
+    <style>
+      .ttl{font-size:18px;font-weight:700;fill:#0B3D91}
+      .sub{font-size:12px;fill:#444}
+      .hdr{font-size:14px;font-weight:700;fill:#FFFFFF}
+      .hdr2{font-size:12px;font-weight:700;fill:#FFFFFF}
+      .agentSub{font-size:11px;font-style:italic}
+      .toolT{font-size:10px;font-weight:700}
+      .tool{font-size:10px}
+      .toolE{font-size:10px;font-style:italic}
+      .arrL{font-size:10px;font-style:italic}
+      .badge{font-size:10px;font-weight:700}
+      .cardT{font-size:12px;font-weight:700}
+      .cardL{font-size:11px;fill:#212121}
+    </style>
+  </defs>
+
+  <rect width="1400" height="800" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="700" y="30" text-anchor="middle" class="ttl">Part 2: Multi-Agent Pipeline — Order Processing Flow</text>
+  <text x="700" y="52" text-anchor="middle" class="sub">Fraud → Inventory → Fulfillment → Customer Communication</text>
+
+  <!-- ============ TOP: Incoming Orders ============ -->
+  <rect x="20" y="70" width="1360" height="120" rx="8" ry="8" fill="#F5F5F5" stroke="#9E9E9E" stroke-width="1.5"/>
+  <text x="34" y="90" font-size="12" font-weight="700" fill="#424242">Incoming Orders</text>
+
+  <!-- Card 1 -->
+  <rect x="60" y="100" width="400" height="80" rx="8" ry="8" fill="#FFFFFF" stroke="#82B366" stroke-width="2"/>
+  <text x="74" y="122" class="cardT" fill="#1B5E20">ORD-50001 | Jane Smith</text>
+  <text x="74" y="142" class="cardL">$20,249 | Istanbul, TR | Platinum</text>
+  <rect x="74" y="150" width="120" height="22" rx="4" fill="#E8F5E9" stroke="#2E7D32"/>
+  <text x="134" y="166" text-anchor="middle" class="badge" fill="#1B5E20">✅ APPROVED</text>
+
+  <!-- Card 2 -->
+  <rect x="500" y="100" width="400" height="80" rx="8" ry="8" fill="#FFFFFF" stroke="#B85450" stroke-width="2"/>
+  <text x="514" y="122" class="cardT" fill="#B71C1C">ORD-50002 | John Smith</text>
+  <text x="514" y="142" class="cardL">$11,599 | Lagos, NG | Standard</text>
+  <rect x="514" y="150" width="120" height="22" rx="4" fill="#FFEBEE" stroke="#B71C1C"/>
+  <text x="574" y="166" text-anchor="middle" class="badge" fill="#B71C1C">⛔ BLOCKED</text>
+
+  <!-- Card 3 -->
+  <rect x="940" y="100" width="400" height="80" rx="8" ry="8" fill="#FFFFFF" stroke="#82B366" stroke-width="2"/>
+  <text x="954" y="122" class="cardT" fill="#1B5E20">ORD-50003 | Maria Gonzalez</text>
+  <text x="954" y="142" class="cardL">$8,219 | Barcelona, ES | Gold</text>
+  <rect x="954" y="150" width="120" height="22" rx="4" fill="#E8F5E9" stroke="#2E7D32"/>
+  <text x="1014" y="166" text-anchor="middle" class="badge" fill="#1B5E20">✅ APPROVED</text>
+
+  <!-- ============ MIDDLE: Pipeline ============ -->
+
+  <!-- FraudDetectionAgent -->
+  <rect x="20" y="210" width="280" height="320" rx="8" ry="8" fill="#F8CECC" stroke="#B85450" stroke-width="2"/>
+  <rect x="20" y="210" width="280" height="32" fill="#B85450"/>
+  <text x="32" y="232" class="hdr">🛡  FraudDetectionAgent</text>
+  <text x="32" y="258" class="agentSub" fill="#7F1D1D">Scores transaction risk</text>
+
+  <rect x="32" y="266" width="256" height="60" rx="6" fill="#FFFFFF" stroke="#B85450"/>
+  <text x="40" y="282" class="toolT" fill="#212121">AnalyzeGeoConsistency()</text>
+  <text x="40" y="298" class="tool" fill="#212121">Card vs IP vs shipping country</text>
+  <text x="40" y="314" class="toolE" fill="#7F1D1D">US ≠ RO ≠ NG → 90pts</text>
+
+  <rect x="32" y="332" width="256" height="60" rx="6" fill="#FFFFFF" stroke="#B85450"/>
+  <text x="40" y="348" class="toolT" fill="#212121">CheckOrderVelocity()</text>
+  <text x="40" y="364" class="tool" fill="#212121">Orders/24h, device, resale items</text>
+  <text x="40" y="380" class="toolE" fill="#7F1D1D">7 orders + new device → 100pts</text>
+
+  <rect x="32" y="398" width="256" height="60" rx="6" fill="#FFFFFF" stroke="#B85450"/>
+  <text x="40" y="414" class="toolT" fill="#212121">GenerateFraudVerdict()</text>
+  <text x="40" y="430" class="tool" fill="#212121">Combined score → APPROVE / REVIEW / BLOCK</text>
+  <text x="40" y="446" class="toolE" fill="#7F1D1D">190pts - 0 tier = BLOCK</text>
+
+  <!-- Decision Diamond -->
+  <polygon points="380,320 440,370 380,420 320,370" fill="#FFF2CC" stroke="#D6B656" stroke-width="2"/>
+  <text x="380" y="375" text-anchor="middle" font-size="12" font-weight="700" fill="#7F6000">Blocked?</text>
+
+  <!-- FulfillmentAgent -->
+  <rect x="470" y="210" width="380" height="320" rx="8" ry="8" fill="#E1D5E7" stroke="#9673A6" stroke-width="2"/>
+  <rect x="470" y="210" width="380" height="32" fill="#9673A6"/>
+  <text x="482" y="232" class="hdr">🚚  FulfillmentAgent</text>
+  <text x="482" y="258" class="agentSub" fill="#4A148C">Orchestrates order-to-ship</text>
+
+  <!-- Dashed inventoryAgent.AsAIFunction box -->
+  <rect x="488" y="270" width="346" height="240" rx="8" ry="8" fill="#F5F0FA" stroke="#9673A6" stroke-width="2" stroke-dasharray="8 4"/>
+  <text x="661" y="288" text-anchor="middle" font-size="11" font-weight="700" fill="#4A148C">inventoryAgent.AsAIFunction()</text>
+  <text x="661" y="304" text-anchor="middle" font-size="10" fill="#4A148C">↳ Entire InventoryAgent becomes one tool</text>
+
+  <!-- Inner InventoryAgent -->
+  <rect x="510" y="320" width="300" height="120" rx="6" fill="#DAE8FC" stroke="#6C8EBF" stroke-width="2"/>
+  <rect x="510" y="320" width="300" height="26" fill="#6C8EBF"/>
+  <text x="520" y="338" class="hdr2">📦  InventoryAgent</text>
+
+  <rect x="520" y="358" width="90" height="40" rx="4" fill="#FFFFFF" stroke="#6C8EBF"/>
+  <text x="565" y="382" text-anchor="middle" class="tool" fill="#212121">CheckStock()</text>
+  <rect x="615" y="358" width="90" height="40" rx="4" fill="#FFFFFF" stroke="#6C8EBF"/>
+  <text x="660" y="382" text-anchor="middle" class="tool" fill="#212121">Optimize()</text>
+  <rect x="710" y="358" width="90" height="40" rx="4" fill="#FFFFFF" stroke="#6C8EBF"/>
+  <text x="755" y="382" text-anchor="middle" class="tool" fill="#212121">Reserve()</text>
+
+  <text x="660" y="420" text-anchor="middle" class="arrL" fill="#1A237E">Pre-built specialist (stock data, allocation, reservations)</text>
+
+  <!-- Agent-as-tool curved arrow + label -->
+  <path d="M 488 480 C 430 480 430 380 510 380" fill="none" stroke="#9673A6" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrP)"/>
+  <text x="450" y="498" text-anchor="middle" class="arrL" fill="#6A1B9A">Agent-as-tool pattern</text>
+
+  <!-- CustomerCommsAgent -->
+  <rect x="1020" y="210" width="360" height="320" rx="8" ry="8" fill="#D5E8D4" stroke="#82B366" stroke-width="2"/>
+  <rect x="1020" y="210" width="360" height="32" fill="#82B366"/>
+  <text x="1032" y="232" class="hdr">✉  CustomerCommsAgent</text>
+  <text x="1032" y="258" class="agentSub" fill="#1B5E20">Drafts customer communications</text>
+
+  <rect x="1032" y="266" width="336" height="50" rx="6" fill="#FFFFFF" stroke="#82B366"/>
+  <text x="1040" y="282" class="toolT" fill="#212121">GetOrderForCommunication()</text>
+  <text x="1040" y="300" class="tool" fill="#212121">Returns customer-safe data only</text>
+
+  <rect x="1032" y="322" width="336" height="50" rx="6" fill="#FFFFFF" stroke="#82B366"/>
+  <text x="1040" y="338" class="toolT" fill="#212121">LogCommunication()</text>
+  <text x="1040" y="356" class="tool" fill="#212121">Audit trail for CRM</text>
+
+  <rect x="1032" y="384" width="336" height="80" rx="6" fill="#FFF2CC" stroke="#B85450" stroke-width="2"/>
+  <text x="1040" y="402" font-size="11" font-weight="700" fill="#7F1D1D">⛔ Information Barrier</text>
+  <text x="1040" y="420" class="tool" fill="#7F1D1D">NEVER reveals: fraud scores, warehouse IDs,</text>
+  <text x="1040" y="436" class="tool" fill="#7F1D1D">shipping costs, IP/device data</text>
+
+  <!-- ============ Pipeline arrows ============ -->
+  <line x1="300" y1="370" x2="320" y2="370" stroke="#333" stroke-width="2" marker-end="url(#arrK)"/>
+
+  <line x1="440" y1="370" x2="470" y2="370" stroke="#2E7D32" stroke-width="2.5" marker-end="url(#arrG)"/>
+  <rect x="442" y="346" width="60" height="18" rx="3" fill="#FFFFFF" stroke="#2E7D32"/>
+  <text x="472" y="359" text-anchor="middle" class="arrL" fill="#1B5E20">NO</text>
+
+  <line x1="850" y1="370" x2="1020" y2="370" stroke="#333" stroke-width="2" marker-end="url(#arrK)"/>
+
+  <polyline points="380,420 380,560 1200,560 1200,530" fill="none" stroke="#B71C1C" stroke-width="2.5" marker-end="url(#arrR)"/>
+  <rect x="500" y="548" width="380" height="22" rx="4" fill="#FFFFFF" stroke="#B71C1C"/>
+  <text x="690" y="563" text-anchor="middle" class="arrL" fill="#B71C1C">YES — Draft 'additional verification' email</text>
+
+  <!-- ============ BOTTOM: Outputs ============ -->
+  <rect x="60" y="600" width="600" height="160" rx="8" ry="8" fill="#D5E8D4" stroke="#82B366" stroke-width="2"/>
+  <text x="74" y="624" font-size="14" font-weight="700" fill="#1B5E20">📧 Order Confirmation</text>
+  <text x="74" y="650" font-size="11" fill="#1B5E20">Dear Jane, your order is confirmed...</text>
+  <text x="74" y="672" font-size="11" fill="#1B5E20">ETA: 7-10 business days</text>
+  <text x="74" y="694" font-size="11" font-style="italic" fill="#1B5E20">Tone: VIP (Platinum tier)</text>
+
+  <rect x="740" y="600" width="600" height="160" rx="8" ry="8" fill="#FFF2CC" stroke="#D6B656" stroke-width="2"/>
+  <text x="754" y="624" font-size="14" font-weight="700" fill="#7F6000">📧 Verification Hold</text>
+  <text x="754" y="650" font-size="11" fill="#7F6000">Dear John, additional verification needed...</text>
+  <text x="754" y="672" font-size="11" fill="#7F6000">No fraud details disclosed</text>
+  <text x="754" y="694" font-size="11" font-style="italic" fill="#7F6000">Tone: Professional (Standard tier)</text>
+
+  <polyline points="1110,530 1110,580 360,580 360,600" fill="none" stroke="#82B366" stroke-width="2" marker-end="url(#arrGrn)"/>
+  <polyline points="1290,530 1290,590 1040,590 1040,600" fill="none" stroke="#D6B656" stroke-width="2" marker-end="url(#arrY)"/>
+
+</svg>
